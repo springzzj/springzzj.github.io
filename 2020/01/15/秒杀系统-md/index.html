@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="秒杀,系统设计,红包," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="概述秒杀系统是指大量用户同时抢购数量有限的商品，瞬时造成服务端的尖峰压力， 服务端需要保证高并发处理，同时又要保证高可用性、商品不会超发、快速扩容缩容、系统容错、降级熔断等，融合了各种服务端技术。   我们以电商的购买流程举例，电商购买分为放入购物车、下单、支付三个步骤。购物车服务是用来管理用户将要购买的商品，单独一个服务。下单服务是服务端创建订单并减库存的服务，如果库存减为0，则不能再卖出商品，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="秒杀系统设计">
+<meta property="og:url" content="http://yoursite.com/2020/01/15/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/index.html">
+<meta property="og:site_name" content="SpringZZJ">
+<meta property="og:description" content="概述秒杀系统是指大量用户同时抢购数量有限的商品，瞬时造成服务端的尖峰压力， 服务端需要保证高并发处理，同时又要保证高可用性、商品不会超发、快速扩容缩容、系统容错、降级熔断等，融合了各种服务端技术。   我们以电商的购买流程举例，电商购买分为放入购物车、下单、支付三个步骤。购物车服务是用来管理用户将要购买的商品，单独一个服务。下单服务是服务端创建订单并减库存的服务，如果库存减为0，则不能再卖出商品，">
+<meta property="article:published_time" content="2020-01-15T15:10:49.000Z">
+<meta property="article:modified_time" content="2020-01-15T15:12:43.327Z">
+<meta property="article:author" content="SpringZZJ">
+<meta property="article:tag" content="秒杀">
+<meta property="article:tag" content="系统设计">
+<meta property="article:tag" content="红包">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/15/秒杀系统-md/"/>
+
+
+
+
+
+  <title>秒杀系统设计 | SpringZZJ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SpringZZJ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">背着锄头的互联网农民</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">秒杀系统设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-15T23:10:49+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>秒杀系统是指大量用户同时抢购数量有限的商品，瞬时造成服务端的尖峰压力， 服务端需要保证高并发处理，同时又要保证高可用性、商品不会超发、快速扩容缩容、系统容错、降级熔断等，融合了各种服务端技术。  </p>
+<p>我们以电商的购买流程举例，电商购买分为放入购物车、下单、支付三个步骤。<strong>购物车</strong>服务是用来管理用户将要购买的商品，单独一个服务。<strong>下单服务</strong>是服务端创建订单并减库存的服务，如果库存减为0，则不能再卖出商品，减库存需要做到幂等和防超发。<strong>支付系统</strong>是对订单进行最终的支付， 如果过期没有支付需要再返回库存。总体上来说订单ID在整个流程中是唯一的，试用订单ID来保证幂等性。如果以微信红包系统来举例的话，经历微信包红包、发红包、抢红包、拆红包的过程。抢红包类似电商的减库存，用户抢到红包但是不知道多少钱，抢到红包的人是说有资格拿到钱（拆红包时有可能失败）。拆红包类似最终支付到账的流程，后台随机给用户分配抢到的金额并写入到数据库中</p>
+<p>秒杀系统中，一个重要的概念的幂等性，因为分布式系统中存在各种重试（事务补偿），在各个层面都要做的幂等性，才能有效的防止重复购买和数据一致性。</p>
+<p>下面我们按照客户端、服务端、缓存、数据库来说明下各个阶段需要做的事情。</p>
+<a id="more"></a>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>客户端是请求的发起方，一般来说客户端有一个H5页面或者客户端页面。在秒杀时刻，会有大量用户同时访问服务端，用户也需要首先下载H5页面或者一些静态信息。</p>
+<h5 id="静态信息存储"><a href="#静态信息存储" class="headerlink" title="静态信息存储"></a>静态信息存储</h5><ul>
+<li>在CDN中存储静态H5页面，快速返回给客户端。</li>
+<li>客户端活动开始前访问服务端时候，缓存页面到本地。</li>
+</ul>
+<h5 id="防止重复购买"><a href="#防止重复购买" class="headerlink" title="防止重复购买"></a>防止重复购买</h5><ul>
+<li>用户只能单点登录，防止多地登录，重复购买。</li>
+<li>客户端访问服务端创建订单后，缓存订单号到本地。后续访问服务端时候带上订单号，防止重复下单。</li>
+<li>用户抢购过后将抢购按钮置灰，防止用户重复抢购。</li>
+<li>添加验证码、游戏、问答等，防止用户快速的重复刷新。增加用户下单的时间，降低服务端性能压力。</li>
+</ul>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>nginx层的日志通过flume写入到Hadoop + Hbase中，风控平台，供以后分析用或者对账用。</p>
+<h4 id="限制购买数量"><a href="#限制购买数量" class="headerlink" title="限制购买数量"></a>限制购买数量</h4><p>服务端需要记录用户目前已经购买了多少次，防止用户超过购买次数。用户下单后创建订单，如果减库存成功则记录在订单管理系统中，这里可以用来统计用户下单成功的次数。为了提升高并发的能力，考虑以下措施。另外这一步在一些特殊情况下（主备不同步，机器挂掉）可能会存在漏掉一些非法用户，需要后面下单写入数据库的时候也进行判断。</p>
+<h6 id="客户端缓存"><a href="#客户端缓存" class="headerlink" title="客户端缓存"></a>客户端缓存</h6><p>客户端缓存用户目前在本机上已经购买了多少数量的商品，如果已经超过限定，则置按钮为灰，不能再抢购。而且可以限定用户抢购的频率，每抢购一次停留5s再抢购。但是限制不了用户绕过客户端直接发起http请求到服务端。</p>
+<h6 id="Redis缓存"><a href="#Redis缓存" class="headerlink" title="Redis缓存"></a>Redis缓存</h6><p>客户端下单时，服务端首先在Redis中存储用户+商品-》购买次数的kv对，如果这期间有同时有该用户的其他请求，发现Redis中已经存在该记录，则暂时返回失败，等待重试。同时一旦有请求进来，对redis进行异步操作加载数据库中用户的订单记录计算用户目前真正的购买次数（前面的抢购中有可能有失败的），异步操作可以根据redis中数据的时间超过5秒更新一次。</p>
+<ul>
+<li>一个用户只能购买一个：redis中缓存用户+商品的key-》上次加载时间，操作redis时候使用原子加操作</li>
+<li>一个用户限定购买多个：redis中缓存用户+商品-》购买次数，上次加载时间，操作redis时候使用原子加操作。<h6 id="本地缓存"><a href="#本地缓存" class="headerlink" title="本地缓存"></a>本地缓存</h6>在某些极端情况下，Redis的性能可能不足以支撑抢购性能。一个优化的策略是说，将用户目前的购买次数存在本地，同样同样适用异步更新的策略。</li>
+<li>本地机器只存储非常热门的多次购买的用户次数</li>
+<li>用户通过一种hash方式使得相同用户的请求到同一台机器。（待考虑，因为商品ID可能也希望到同一台机器上处理）。但是如果这一台机器挂掉，本地存储的用户购买数量就会丢失，换到新机器后需要去redis中查询存储在本地再判断是否减库存。<h6 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h6></li>
+<li>Redis采用集群格式，一主多副，防止主机挂掉。</li>
+<li>如果Redis挂掉，采用熔断方式。并且降级，回复大部分的请求失败，少部分请求走数据库逻辑。</li>
+<li>如果跨过这一层，需要后续减库存时候判断是否该用户已经购买了足够多的商品，判断下单是否失败。</li>
+<li>Redis扩容缩容交由Redis集群保证。</li>
+</ul>
+<h4 id="限制购买频率"><a href="#限制购买频率" class="headerlink" title="限制购买频率"></a>限制购买频率</h4><p>除了限制用户的购买数量，另一方面可以从用户的购买频率上进行限制。首先客户端和服务端都要限制一个用户一次最多购买多少件商品，一个配置就可以搞定。然后从服务端采用异步的方式计算热点用户或者热点IP的购买频率，计算出黑名单用户，并上传到服务端，对黑名单用户直接返回失败。</p>
+<ul>
+<li>限制商品购买频率。如果该抢购商品在一段时间内抢购频率太快，则随机给一些用户返回失败。 </li>
+<li>限制用户购买频率：防止单个用户购买频率太快，防止是非法用户。<h4 id="缓存库存"><a href="#缓存库存" class="headerlink" title="缓存库存"></a>缓存库存</h4>用户下单的时候需要判断库里是否还有库存，如果没有库存就直接返回给用户失败，防止超卖的发生。但是在并发量高的场景，会同时有请求操作数据库，如果不加锁的话会有数据不一致的情况，加锁的话会对系统性能有影响。所以，一种办法是在数据库层增加缓存层，将大部分超过库存的请求挡到外面。  </li>
+</ul>
+<h5 id="随机返回失败"><a href="#随机返回失败" class="headerlink" title="随机返回失败"></a>随机返回失败</h5><p>当大批量请求进来时候，可能已经超过本机的承载能力，则随机将一些请求置为抢购失败，减轻服务端的压力。这就是降级和熔断的功能。</p>
+<h5 id="redis缓存"><a href="#redis缓存" class="headerlink" title="redis缓存"></a>redis缓存</h5><p>将商品库存缓存在redis中，一旦过来订单，则对redis做原子减操作，如果库存已经减为0，则直接返回失败。否则，将本次的订单写入到消息队列中，后续异步更新到数据库。如果订单写入消息队列失败，同样返回失败。如果写入成功，返回正在处理，等待数据库更新成功后，才真正的返回成功。<br>通过redis的请求并不一定最后一定处理成功，可能会有一些重复订单（机器挂掉后出现）、或者缓存和数据库库存的不一致导致的漏掉，所以最后的结果要以数据库为准。</p>
+<h6 id="防止重复提交"><a href="#防止重复提交" class="headerlink" title="防止重复提交"></a>防止重复提交</h6><p>首先服务端需要判断订单是否之前处理过。所以每当用户下单时候，需要把该订单和其当前状态写入到数据库或者Redis中，key是订单号。用来判断是否是重复订单，如果是重复订单，则返回当前订单的状态（正在处理中，抢购成功，抢购失败）。类似抢火车票时候，一直处于排队状态。</p>
+<h5 id="本地预分配"><a href="#本地预分配" class="headerlink" title="本地预分配"></a>本地预分配</h5><p>使用redis缓存需要经过一次网络调用，如果可以做到将库存缓存到本地，则会大大提升后端性能。所以，可以考虑首先将抢购商品的库存预分配到每台机器上（每天机器上有部分库存），需要保证同一个用户的请求会被分配到同一台机器。这样，当用户请求进来时，直接在本地给用户分配商品，清减库存（这里需要尽量减少锁的操作，保证性能，比如可以考虑分组、数组等减少锁的粒度）。如果失败，则直接返回失败。如果成功，则写入到消息队列，返回抢购成功同时更新订单状态（这里和Redis的不一样，redis方案需要最终写入到数据库中才返回成功）。如果写消息队列失败，则仍然返回失败。但是该用户的这份库存需要释放出来。</p>
+<h6 id="防止重复提交-1"><a href="#防止重复提交-1" class="headerlink" title="防止重复提交"></a>防止重复提交</h6><p>redis方案中使用redis存储订单状态，那么是否可以在本地缓存订单状态呢？保证同一个订单的请求会进入同一台机器，使用订单ID的后两位来路由到某台机器上，同时在更新本地状态后，异步写入到redis中订单状态。考虑机器宕机的情况下，订单请求切换到另外一台机器怎么办，这时候需要去redis中查询一下，判断该订单是否之前处理过。偶尔一些重复请求（一些非法用户或者更换了机器的）可能会进入后面的逻辑，由数据库层面拦截。</p>
+<h6 id="机器宕机"><a href="#机器宕机" class="headerlink" title="机器宕机"></a>机器宕机</h6><ul>
+<li>如果出现机器宕机导致没来得及更新Redis中订单的状态，用户再来请求时候的直接返回订单目前的状态。直到后续数据库完成操作后，更新redis中订单状态。</li>
+<li>机器宕机导致来不及发送到消息队列中，客户端访问超时设置状态为系统正在处理。用户再来请求时候的直接返回订单目前的状态（正在处理）。后续判定该数据过期或者确认失败后，设置为失败状态。<h6 id="机器扩容"><a href="#机器扩容" class="headerlink" title="机器扩容"></a>机器扩容</h6>另一个问题是在运行过程中发现压力太大，需要新增一台机器。这时候库存分配策略是怎么样的？如果直接使用hash规则会发生改变，导致大批用户迁移机器，影响性能。一个好的hash策略是参考微信红包的策略，将订单ID的最后两位分配到每台机器上。比如现在有10台机器，目前订单ID的后两位生成时候都是00-09。如果增加了一台机器，生成00-10结尾的订单ID。这样由订单ID生成规则来做机器的路由。<h6 id="库存分配"><a href="#库存分配" class="headerlink" title="库存分配"></a>库存分配</h6>机器扩容的另外一个问题是新机器需要新的库存。考虑将整体库存分成多个20w的小库存放到数据库中。每台机器每隔一段时间来拿空闲的库存，并设置该库存的owner是该机器IP。新机器扩容时候，同样来这里拿。如果一台机器挂掉，那么属于它的小库存将不再更新，等到一段时间确定处理完所有的消息队列中的该机器请求后，则设置为无owner，允许其他机器获取。</li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>数据库中保存最终的商品库存，需要保证数据安全性和数据一致性。从消息队列中顺序读取消息并减库存，因为是顺序操作不涉及到超卖的问题。同时更新redis中订单的状态。为了保证幂等性，需要在同一个事务中同步写入数据库中该订单消耗了多少库存（流水），防止后续同一个订单又来减库存。数据库使用raft强一致性协议保持主从同步。其他的方法：</p>
+<ul>
+<li>使用悲观锁</li>
+<li>使用消息队列</li>
+<li>使用乐观锁，version来实现</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%A7%92%E6%9D%80/" rel="tag"># 秒杀</a>
+          
+            <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag"># 系统设计</a>
+          
+            <a href="/tags/%E7%BA%A2%E5%8C%85/" rel="tag"># 红包</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/15/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/" rel="next" title="JVM长时间Stop The World问题">
+                <i class="fa fa-chevron-left"></i> JVM长时间Stop The World问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="SpringZZJ" />
+          <p class="site-author-name" itemprop="name">SpringZZJ</p>
+           
+              <p class="site-description motion-element" itemprop="description">在百度腾讯种地</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/springzzj" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#静态信息存储"><span class="nav-number">2.0.1.</span> <span class="nav-text">静态信息存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#防止重复购买"><span class="nav-number">2.0.2.</span> <span class="nav-text">防止重复购买</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端"><span class="nav-number">3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#限制购买数量"><span class="nav-number">3.1.</span> <span class="nav-text">限制购买数量</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#客户端缓存"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">客户端缓存</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Redis缓存"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">Redis缓存</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#本地缓存"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">本地缓存</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据一致性"><span class="nav-number">3.1.0.4.</span> <span class="nav-text">数据一致性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#限制购买频率"><span class="nav-number">3.2.</span> <span class="nav-text">限制购买频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存库存"><span class="nav-number">3.3.</span> <span class="nav-text">缓存库存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#随机返回失败"><span class="nav-number">3.3.1.</span> <span class="nav-text">随机返回失败</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redis缓存"><span class="nav-number">3.3.2.</span> <span class="nav-text">redis缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#防止重复提交"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">防止重复提交</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#本地预分配"><span class="nav-number">3.3.3.</span> <span class="nav-text">本地预分配</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#防止重复提交-1"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">防止重复提交</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#机器宕机"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">机器宕机</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#机器扩容"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">机器扩容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#库存分配"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">库存分配</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">4.</span> <span class="nav-text">数据库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SpringZZJ</span>
+</div>
+
+
+<div class="powered-by">
+  <i class="fa fa-user-md">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

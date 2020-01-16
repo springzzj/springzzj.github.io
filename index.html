@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-16 22:44:20 / 修改时间：14:47:45" itemprop="dateCreated datePublished" datetime="2020-01-16T22:44:20Z">2020-01-16</time>
+              <time title="创建时间：2020-01-16 22:44:20 / 修改时间：15:31:49" itemprop="dateCreated datePublished" datetime="2020-01-16T22:44:20Z">2020-01-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,7 +249,9 @@
 
       
           <h4 id="概率论">概率论</h4>
-<p>我们需要描述一组数据时候，本质上需要描述每一个点。但是如果我们可以用分布去表示这些数据，就只需要均值或者方差分布参数，大大节省了存储空间。 ##### 离散型随机分布 伯努利分布：一次实验，结果只有两种结果。<code>$p(k)=p^k(1-p)^{(1-k)}, k\in\{0, 1\}$</code> ，期望：<span class="math inline">\(p\)</span>，方差：<span class="math inline">\(p(1-p)\)</span></p>
+<p>我们需要描述一组数据时候，本质上需要描述每一个点。但是如果我们可以用分布去表示这些数据，就只需要均值或者方差分布参数，大大节省了存储空间。</p>
+<h5 id="离散型随机分布">离散型随机分布</h5>
+<p>伯努利分布：一次实验，结果只有两种结果。<span class="math inline">\(p(k)=p^k(1-p)^{(1-k)}, k\in\{0, 1\}\)</span>，期望：<span class="math inline">\(p\)</span>，方差：<span class="math inline">\(p(1-p)\)</span></p>
 <p>二项分布：n次伯努利实验正好得到k次成功的概率，单次成功的概率为p。当n=1的时候退化到伯努利分布。当p=0.5的时候，整体上和正态分布图形类似。<span class="math inline">\(p(k)=C_n^kp^k(1-p)^{n-k}\)</span>，期望：<span class="math inline">\(np\)</span>，方差：<span class="math inline">\(np(1-p)\)</span></p>
 <p>几何分布：进行n次伯努利实验，在获取成功前需要进行多少次实验。分布图形是越往前概率越大，<span class="math inline">\(p(k)=(1-p)^{k-1}p\)</span>, 期望<span class="math inline">\(\frac{1}{p}\)</span>, 方差是<span class="math inline">\(\frac{(1-p)}{p^k}\)</span></p>
 <p>泊松分布：单位时间内独立事件发生次数的概率分布，它是二项分布n很大而p很小时的极限。泊松分布可以把单位时间切成n次，每次成功的概率为p，那么单位时间内出现k次的概率就是二项分布，所以泊松分布是二项分布的一种极限形式。它的分布图形也和二项分布类似，特别是n很大而p很小时。<span class="math inline">\(p(k)=\frac{e^{-\lambda}\lambda^k}{k!}\)</span>, 期望和方差都是<span class="math inline">\(\lambda\)</span>,其中k是发生的次数，<span class="math inline">\(\lambda\)</span>是发生的平均次数，当<span class="math inline">\(\lambda&gt;=20\)</span>时，泊松分布趋向于正态分布。</p>
@@ -276,7 +278,9 @@ p^* = min_p max_{\mu,\lambda}L=max_{\mu,\lambda}min_pL
 lnp + 1 - \mu_0 + \mu_1 + \sum_i\lambda_if_i(y) = 0
 \]</span> 得到解p*： <span class="math display">\[math
 p^*(y) = e^{ - 1 + \mu_0 - \mu_1 - \sum_i\lambda_if_i(y)} = c*e^{-\sum_i\lambda_if_i(y)}
-\]</span> ###### 伯努利分布推导 约束条件： <span class="math display">\[math
+\]</span></p>
+<h6 id="伯努利分布推导">伯努利分布推导</h6>
+<p>约束条件： <span class="math display">\[math
 f(y) = y\rightarrow\int_yp(y)*y=\mu, y\in\{0,1\}
 \]</span> 其中<span class="math inline">\(\mu\)</span>代表事件成功的概率，也是伯努利分布的期望值，得到<span class="math inline">\(c*e^{-\lambda}=\mu\)</span><br />
 同时：<span class="math inline">\(p(0) + p(1) = 1 \rightarrow c + ce^{-\lambda}=1\)</span><br />
@@ -285,7 +289,7 @@ f(y) = y\rightarrow\int_yp(y)*y=\mu, y\in\{0,1\}
 <h6 id="正态分布推导">正态分布推导</h6>
 <p>约束条件：均值和方差</p>
 <h6 id="其他分布的约束条件">其他分布的约束条件</h6>
-<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-xNqN1txw-1579185820184)(https://note.youdao.com/yws/api/personal/file/WEBb787a4d8461c11588d8e8db5828c459e?method=download&amp;shareKey=3b83a7420a5cfdf4c31bb45d34753208)]</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBb787a4d8461c11588d8e8db5828c459e?method=download&amp;shareKey=3b83a7420a5cfdf4c31bb45d34753208" /></p>
 <h5 id="其他概念">其他概念</h5>
 <p>概率分布函数，条件概率，联合概率， 独立分布，条件独立，熵， 交 叉熵、条件熵、KL散度</p>
 
@@ -1156,6 +1160,56 @@ f(y) = y\rightarrow\int_yp(y)*y=\mu, y\in\{0,1\}
   
 
   
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 

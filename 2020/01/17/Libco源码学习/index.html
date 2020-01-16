@@ -46,23 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="腾讯目前主要的盈利主要分为四个部分：游戏收入、数字收入、网络广告、金融及企业服务。第三季度收入970亿左右，这四个部分占比差不多。先说结论，预计腾讯明年能保持20%的增长，给予30倍PE。从本质上看，微信的海量用户使得腾讯能够在很多领域都能做到后发制人，比如依赖微信红包发展起来微信支付一举打破支付宝的绝对优势、依赖小程序额朋友圈使得社交广告的增速稳步增加、腾讯云能起来跟微信也息息相关，所以只要有微">
+  <meta name="description" content="初始化co-routine-env（在任意一个线程中调用co-create都会引发该函数，如果没有初始化则初始化）   针对当前线程实例化一个env出来 创建初始co-routine（主线程中co-routine），分配栈空间128K（该栈空间没有用到），设置回调函数为NULL，is_main&#x3D;true 将初始co-routine加入到env中Call-stack数组中，形成调用栈 设置env中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="腾讯股票分析-20200108">
-<meta property="og:url" content="http://yoursite.com/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/index.html">
+<meta property="og:title" content="Libco源码学习">
+<meta property="og:url" content="http://yoursite.com/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
-<meta property="og:description" content="腾讯目前主要的盈利主要分为四个部分：游戏收入、数字收入、网络广告、金融及企业服务。第三季度收入970亿左右，这四个部分占比差不多。先说结论，预计腾讯明年能保持20%的增长，给予30倍PE。从本质上看，微信的海量用户使得腾讯能够在很多领域都能做到后发制人，比如依赖微信红包发展起来微信支付一举打破支付宝的绝对优势、依赖小程序额朋友圈使得社交广告的增速稳步增加、腾讯云能起来跟微信也息息相关，所以只要有微">
+<meta property="og:description" content="初始化co-routine-env（在任意一个线程中调用co-create都会引发该函数，如果没有初始化则初始化）   针对当前线程实例化一个env出来 创建初始co-routine（主线程中co-routine），分配栈空间128K（该栈空间没有用到），设置回调函数为NULL，is_main&#x3D;true 将初始co-routine加入到env中Call-stack数组中，形成调用栈 设置env中">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-16T11:05:51.000Z">
-<meta property="article:modified_time" content="2020-01-16T03:12:34.496Z">
+<meta property="article:published_time" content="2020-01-16T22:27:03.000Z">
+<meta property="article:modified_time" content="2020-01-16T14:41:11.679Z">
 <meta property="article:author" content="SpringZZJ">
-<meta property="article:tag" content="腾讯">
-<meta property="article:tag" content="股票">
-<meta property="article:tag" content="游戏">
-<meta property="article:tag" content="云计算">
+<meta property="article:tag" content="libco">
+<meta property="article:tag" content="协程">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/">
+<link rel="canonical" href="http://yoursite.com/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
 
 
 <script id="page-configurations">
@@ -74,7 +72,7 @@
   };
 </script>
 
-  <title>腾讯股票分析-20200108 | SpringZZJ's Blog</title>
+  <title>Libco源码学习 | SpringZZJ's Blog</title>
   
 
 
@@ -189,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          腾讯股票分析-20200108
+          Libco源码学习
         </h1>
 
         <div class="post-meta">
@@ -213,7 +211,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-16 11:05:51 / 修改时间：03:12:34" itemprop="dateCreated datePublished" datetime="2020-01-16T11:05:51Z">2020-01-16</time>
+              <time title="创建时间：2020-01-16 22:27:03 / 修改时间：14:41:11" itemprop="dateCreated datePublished" datetime="2020-01-16T22:27:03Z">2020-01-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,8 +219,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/" itemprop="url" rel="index">
-                    <span itemprop="name">投资理财</span>
+                  <a href="/categories/%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">后台开发</span>
                   </a>
                 </span>
             </span>
@@ -243,8 +241,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,29 +257,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>腾讯目前主要的盈利主要分为四个部分：游戏收入、数字收入、网络广告、金融及企业服务。第三季度收入970亿左右，这四个部分占比差不多。先说结论，预计腾讯明年能保持20%的增长，给予30倍PE。从本质上看，微信的海量用户使得腾讯能够在很多领域都能做到后发制人，比如依赖微信红包发展起来微信支付一举打破支付宝的绝对优势、依赖小程序额朋友圈使得社交广告的增速稳步增加、腾讯云能起来跟微信也息息相关，所以只要有微信，任何一个领域都不能忽视腾讯。所以我觉的短视频这个赛道短暂的失利对腾讯造不成什么大的威胁，腾讯的发展脚步不会停下来。下面逐步展开这四部分分别来说：</p>
-<a id="more"></a>
-<h3 id="游戏收入"><a href="#游戏收入" class="headerlink" title="游戏收入"></a>游戏收入</h3><p>游戏的基本盘是随着版号的放开和吃鸡游戏的变现，2020年游戏应该会好一些。风险是王者荣耀游戏的衰退。未来的关注点：</p>
+        <ol>
+<li><strong>初始化co-routine-env（在任意一个线程中调用co-create都会引发该函数，如果没有初始化则初始化）</strong></li>
+</ol>
 <ul>
-<li><p>游戏递延收入达到545亿，说明有利润藏到了后面。主要是和平精英游戏的上升。王者荣耀游戏目前衰退不明显。</p>
+<li>针对当前线程实例化一个env出来</li>
+<li>创建初始co-routine（主线程中co-routine），分配栈空间128K（该栈空间没有用到），设置回调函数为NULL，is_main=true</li>
+<li>将初始co-routine加入到env中Call-stack数组中，形成调用栈</li>
+<li>设置env中的epoll实例</li>
+</ul>
+<a id="more"></a>
+<ol start="2">
+<li><strong>co_create：创建工作co-routine</strong></li>
+</ol>
+<ul>
+<li>设置该co-routine的env是当前线程的env，分配栈空间128K，设置用户赋予的回调函数</li>
+<li>返回该co-routine</li>
+</ul>
+<ol start="3">
+<li><strong>co_resume：将cpu的执行权转交到工作co-routine</strong></li>
+</ol>
+<ul>
+<li>如果该co-routine未初始化，则初始化<ul>
+<li>128k栈空间从高地址到低地址插入该co-routine的函数调用栈（每个线程都有自己的私有栈空间，这里协程可以看做跟线程等同，拥有自己的私有栈）</li>
+<li>分配该co-routine的上下文ctx的14个reg数组，用来临时存储CPU寄存器的值。</li>
+<li>在栈空间第一位置插入指向co-routine的指针（这个是CoRoutineFunc的参数），设置协程ctx中reg数组的EIP和ESP，ESP指向栈顶，EIP指向函数CoRoutineFunc，该函数内会调用用户设置的回调函数，这个是当前co-routine的返回地址。</li>
+</ul>
 </li>
-<li><p>并表supercell，关注supercell贡献的收入。supercell的2019年收入预计在15亿-20亿美元之间，利润大概50%左右，比2018年稍有增加。</p>
-</li>
-<li><p>国际化：PBUG在全球大获成功，关注国际化未来的业务。2019第三季度手游海外收入预计30亿人民币。第四季度推出了使命召唤手游，目前主要看使命召唤手游和PUBG两款游戏，预计会更好一些。未来的英雄联盟手游也是一大看点。</p>
-</li>
-<li><p>和任天堂switch合作，看能蹦出什么样的火花。全球游戏市场中主机市场占比不少，这块也是未来发力的一个点。</p>
+<li>将该co-routine加入到call-stack数组中，</li>
+<li>交换和当前co-routine的上下文（cll-stack的栈顶2个元素进行交换上下文），执行coctx_swap函数，开始执行新创建的co-routine。<ul>
+<li>将当前的寄存器值存储到当前co-routine的ctx的reg数组中，esp值为去除返回地址的栈顶地址，同样存返回地址到reg数组中，当前的返回地址为调用coctx_swap函数的下一条语句。</li>
+<li>将新co-routine的ctx中reg数组中的值加载到cpu寄存器中，现在已经运行在新co-routine的栈空间内了。</li>
+<li>push新co-routine的返回地址到栈空间，coctx_swap函数退出，转到返回地址处开始执行新的co-routine的代码。</li>
+<li>开始执行CoRoutineFunc函数。</li>
+</ul>
 </li>
 </ul>
-<h3 id="数字收入"><a href="#数字收入" class="headerlink" title="数字收入"></a>数字收入</h3><p>数字收入主要来自于视频和音乐的订阅收入，目前腾讯视频处于亏损状态，主要是成本太高。</p>
-<p>2019上半年限薪令出台，会降低视频网站的成本。拭目以待，未来可能还是要走Netflex自制剧控制内容的方式，否则内容成本仍然会居高不下。毕竟优质内容还是少的。</p>
-<h3 id="网络广告"><a href="#网络广告" class="headerlink" title="网络广告"></a>网络广告</h3><p>网络广告的收入主要来自于社交广告和媒体广告。媒体广告主要是指来在新闻、视频等媒体渠道所投放的广告，社交广告主要来自微信朋友圈、小程序和QQ看点的广告收入。社交广告第三季度收入147亿，媒体广告37亿。</p>
-<p>社交广告看好持续发力，特别是小程序的发展，第三季度同比增加32%。媒体广告受制于经济环境，下跌28%（和2019年世界杯有关）。预计2020年经济形势转好，媒体广告预计会恢复。</p>
-<h3 id="金融科技及企业服务"><a href="#金融科技及企业服务" class="headerlink" title="金融科技及企业服务"></a>金融科技及企业服务</h3><p>金融科技主要指微信支付、理财通等金融产品，企业服务主要指云计算等</p>
-<p>金融方面同比增长40%左右，但是2019上半年支付宝腾讯交付了备付金，影响了利息收入。所以2020年同比增长应该能维持住。蚂蚁金服预计市值2000亿左右，微信支付1000亿的市值应该是有的。这块应该是腾讯后续最大的收入来源。云计算增长80%左右，前三季度收入突破100亿。后续持续关注。</p>
-<p>综上，我觉的腾讯股票PE在30左右是一个比较合理的水平。目前价格稍微有点高估，后续持续观察</p>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ol>
-<li><a href="https://m.huxiu.com/article/326265.html" target="_blank" rel="noopener">腾讯，被低估的社交之王</a></li>
+<ol start="4">
+<li><strong>co_yield：让出cpu的执行权，转交给上一个co_routine</strong></li>
 </ol>
+<ul>
+<li>整体逻辑和co_resume一致，交换call_stack里面的最后两个co_routine的上下文ctx，当前co_routine退出call_stack。</li>
+</ul>
+<ol start="5">
+<li><strong>socket网络调用函数</strong></li>
+</ol>
+<ul>
+<li>设置当前协程syshook=1，表明后续创建的socket都要被拦截。</li>
+<li>创建socket函数：<ul>
+<li>如果syshook=0，则直接调用系统的socket函数，返回。否则</li>
+<li>首先调用系统的socket函数。进程有一个全局co_socket_fd数组，长度为102400。每个co_socket_fd的结构内容包括：socket读写超时。将系统生成的fd位置的co_cocket_fd元素设置读写超时为1s。</li>
+<li>设置socket为非阻塞</li>
+</ul>
+</li>
+<li>connect函数<ul>
+<li>如果syshook=0，则直接调用系统的connect函数返回。否则</li>
+<li>首先调用系统connect函数进行远程socket连接。因为syshook=1时cocket为非阻塞，调用完即退出函数，此时并不代表已经创建好连接，需要在下面检查。</li>
+<li>调用hook的poll函数将fd插入到epoll中，并使用co_yied函数让出cpu执行权，等待下次获得执行权时执行后续的逻辑</li>
+<li>超时时间设置为25s，如果25s到期该socket可写则说明连接创建成功。该过程重试3次，也就是说可能最迟需要75秒才能创建连接。</li>
+<li>如果poll可读，则代表创建好连接。否则报连接超时错误。</li>
+</ul>
+</li>
+<li>write函数<ul>
+<li>如果syshook=1， 则直接调用系统的write函数返回。否则</li>
+<li>首先调用系统的write函数，非阻塞，一次可能没有写完。这时候需要将fd插入到epoll中，等待下次可写的时候再写剩下的。</li>
+<li>调用co_yield函数让出当前co-routine的执行权。同时设置超时时间为1s</li>
+<li>等待当前协程获取下次执行权时候，此时fd可写，再调用write函数将剩下数据写完</li>
+</ul>
+</li>
+<li>read函数<ul>
+<li>如果syshook=1， 则直接调用系统的read函数返回。否则</li>
+<li>将fd插入到epoll中，并调用co_yield函数让出当前co-routine的执行权。等待下次获取执行权。</li>
+<li>获得执行权后，说明目前fd可读，此时调用系统read函数读出来数据。</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li><strong>主协程co-routine逻辑</strong></li>
+</ol>
+<ul>
+<li>主线程在创建完工作协程后，进入co_eventloop逻辑，监听事件。</li>
+<li>每毫秒进行一次epoll_wait，将所有触发到的fd找到其所在的co-routine调用co-resume切换cpu执行权。</li>
+</ul>
+<ol start="7">
+<li><strong>超时处理</strong></li>
+</ol>
+<ul>
+<li>使用时间轮方法解决超时问题，在往epoll里面插入fd时候，同时往时间轮里插入事件到合适的位置。时间轮方法可以做到O(1)的时间复杂度读写。</li>
+<li>每次主协程调用co_eventloop循环时，每毫秒循环一次。首先从时间轮中取出来过期的事件，并标识该fd已经过期，然后一起插入到active表。然后对active的每个fd调用co-resume切换，后续处理过期逻辑。</li>
+</ul>
+<ol start="8">
+<li><strong>co_cond协程条件变量使用</strong></li>
+</ol>
+<ul>
+<li>co_cond_wait<ul>
+<li>将cond item加入到item链表，同时根据它的超时时间加入到超时时间轮中。调用co_yield让出cpu执行权。</li>
+<li>如果在中间发现该item超时，则从链表中剔除出去。</li>
+</ul>
+</li>
+<li>co_cond_signal<ul>
+<li>从item链表中拿出来第一个item，然后将它加入到epoll的active链表里，等待下次主线程执行时进行切换。</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li><strong>协程服务端处理</strong></li>
+</ol>
+<ul>
+<li>首先创建多个工作协程，并把这些协程加入到stack中。</li>
+<li>再创建一个accept协程，接受过来的accept网络请求。一旦过来请求，则从stack弹出来一个co，并把过来的fd设置为co的fd。切换到工作线程执行。如果stack为空，则说明所有的工作协程都被占用，这时候出错。</li>
+<li>工作线程调用read函数，将fd写入到epoll中，并释放执行权。</li>
+<li>等待fd可读时，重新获取执行权，从中读取数据并处理。处理完成后，fd设置为-1，重新加入到stack中。</li>
+</ul>
 
     </div>
 
@@ -291,10 +378,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%85%BE%E8%AE%AF/" rel="tag"># 腾讯</a>
-              <a href="/tags/%E8%82%A1%E7%A5%A8/" rel="tag"># 股票</a>
-              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
-              <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"># 云计算</a>
+              <a href="/tags/libco/" rel="tag"># libco</a>
+              <a href="/tags/%E5%8D%8F%E7%A8%8B/" rel="tag"># 协程</a>
           </div>
 
         
@@ -303,13 +388,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/" rel="prev" title="秒杀系统设计">
-      <i class="fa fa-chevron-left"></i> 秒杀系统设计
+    <a href="/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="prev" title="TensorFlow-Serving入门">
+      <i class="fa fa-chevron-left"></i> TensorFlow-Serving入门
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="next" title="TensorFlow-Serving入门">
-      TensorFlow-Serving入门 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -370,7 +452,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏收入"><span class="nav-number">1.</span> <span class="nav-text">游戏收入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字收入"><span class="nav-number">2.</span> <span class="nav-text">数字收入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络广告"><span class="nav-number">3.</span> <span class="nav-text">网络广告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#金融科技及企业服务"><span class="nav-number">4.</span> <span class="nav-text">金融科技及企业服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -184,6 +184,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/17/hexo%E6%94%AF%E6%8C%81google%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/17/hexo%E6%94%AF%E6%8C%81google%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">hexo支持google搜索</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-17 10:56:47 / 修改时间：03:39:16" itemprop="dateCreated datePublished" datetime="2020-01-17T10:56:47Z">2020-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/01/17/hexo%E6%94%AF%E6%8C%81google%E6%90%9C%E7%B4%A2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/17/hexo%E6%94%AF%E6%8C%81google%E6%90%9C%E7%B4%A2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当我们使用hexo搭建好一个网站后，自然希望博客内容能用google搜索到。但是这里我们需要做一些事情，才能被Google搜索引擎搜索到。下文将详细介绍需要做的事情：</p>
+<h5 id="验证网站">验证网站</h5>
+<p>在Google搜索引擎中输入如下内容，如果能看到你自己网站的内容，则说明验证成功。如果你的网站是新建立的，自然在这里搜索不到。本文一下内容将介绍如何能够被搜索到。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site:springzzj.github.io</span><br></pre></td></tr></table></figure></p>
+<h5 id="验证所有权">验证所有权</h5>
+<p>为了被Google搜索到，Google首先需要验证你是这个网站的所有人。前往<a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a>，点添加资源，输入你的域名：https://springzzj.github.io。验证方式我们采用推荐的验证方式Html文件的方式，下载Html文件googlebddd24d26c36e362.html到hexo的source文件夹，并在文件中添加layout:false(否则会出现验证失败的问题)，内容如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: false</span><br><span class="line">---</span><br><span class="line">google-site-verification: googlebddd24d26c36e362.html</span><br></pre></td></tr></table></figure> 回到Google Search Console页面，点击验证完成网站的所有权验证。</p>
+<h5 id="提交链接信息">提交链接信息</h5>
+<p>要让Google搜索到我们需要提交站点地图文件sitemap.xml给到搜索引擎，进行如下步骤：</p>
+<ul>
+<li>安装生成sitemap.xml的插件工具 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure></li>
+<li>在_config.yml添加内容 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">urlforgoogle: https:&#x2F;&#x2F;springzzj.github.io&#x2F;</span><br><span class="line">sitemap:</span><br><span class="line">   path: sitemap.xml</span><br></pre></td></tr></table></figure></li>
+<li>同时需要确保_config.yml中的url值为自己的域名地址，否则验证sitemap.xml会不通过 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: https:&#x2F;&#x2F;springzzj.github.io&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>执行hexo g &amp;&amp; hexo d 提交内容到github</li>
+<li>验证sitemap 回到Google Search Console，点击站点地图，输入https://springzzj.github.io/sitemap.xml，完成站点地图验证</li>
+</ul>
+<h5 id="生成robots.txt">生成robots.txt</h5>
+<p>在hexo的source目录下生成robots.txt文件内容如下，并执行hexo g &amp;&amp; hexo d发布出去。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line"></span><br><span class="line">Allow: &#x2F;</span><br><span class="line">Allow: &#x2F;archives&#x2F;</span><br><span class="line">Allow: &#x2F;categories&#x2F;</span><br><span class="line">Allow: &#x2F;tags&#x2F; </span><br><span class="line"></span><br><span class="line">Disallow: &#x2F;vendors&#x2F;</span><br><span class="line">Disallow: &#x2F;js&#x2F;</span><br><span class="line">Disallow: &#x2F;css&#x2F;</span><br><span class="line">Disallow: &#x2F;fonts&#x2F;</span><br><span class="line">Disallow: &#x2F;vendors&#x2F;</span><br><span class="line">Disallow: &#x2F;fancybox&#x2F;</span><br><span class="line"></span><br><span class="line">Sitemap: https:&#x2F;&#x2F;springzzj.github.io&#x2F;sitemap.xml</span><br></pre></td></tr></table></figure></p>
+<h5 id="其他">其他</h5>
+<p>为了加快Google扫描我们网站的速度，可以通过如下方式</p>
+<ul>
+<li>进入Google Search Console，点击网址检查，输入我们网址内容并点击请求编入索引</li>
+<li>在浏览器中输入https://www.google.com/ping?sitemap=https://springzzj.github.io/sitemap.xml要求Google给网站建立索引。</li>
+</ul>
+<p>等待几分钟后，再在Google搜索中输入site:springzzj.github.io后就可以看到网站的内容。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/17/%E6%9C%80%E5%A4%A7%E7%86%B5%E5%92%8C%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -403,10 +509,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-16 18:17:52 / 修改时间：10:55:04" itemprop="dateCreated datePublished" datetime="2020-01-16T18:17:52Z">2020-01-16</time>
+              <time title="创建时间：2020-01-16 18:17:52" itemprop="dateCreated datePublished" datetime="2020-01-16T18:17:52Z">2020-01-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-17 02:56:17" itemprop="dateModified" datetime="2020-01-17T02:56:17Z">2020-01-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -444,7 +556,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本文中我们在Mac机器上使用Docker配置TensorFlow-Serving环境，并提供Http预测接口。 ##### 安装Docker <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure> ##### 下载TensorFlow-Serving镜像 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull tensorflow&#x2F;serving</span><br></pre></td></tr></table></figure>
+          <p>本文中我们在Mac机器上使用Docker配置TensorFlow-Serving环境，并提供Http预测接口。</p>
+<h5 id="安装docker">安装Docker</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
+<h5 id="下载tensorflow-serving镜像">下载TensorFlow-Serving镜像</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull tensorflow&#x2F;serving</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more" rel="contents">
@@ -1003,20 +1119,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

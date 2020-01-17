@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://yoursite.com').hostname,
+    hostname: new URL('https://springzzj.github.io').hostname,
     root: '/',
     scheme: 'Gemini',
     version: '7.7.0',
@@ -49,7 +49,7 @@
   <meta name="description" content="近期，线上服务偶尔会出现超时情况。说一下背景，我们的开发语言是java，在单台物理机上部署了3个java模块，他们之间互相调用。服务p999耗时有时候会超过10s，按道理我们的业务不会停滞这么长时间，并且在长时间内只有一台机器多次出现了这个问题。下面是我们的分析流程：  登录机器查看WARN报警日志，事故发生时刻打印了大批WARN日志。进一步发现，在大批打印日志之前，有很长时间没有打印任何日志。怀">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM长时间Stop The World问题">
-<meta property="og:url" content="http://yoursite.com/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/index.html">
+<meta property="og:url" content="https://springzzj.github.io/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
 <meta property="og:description" content="近期，线上服务偶尔会出现超时情况。说一下背景，我们的开发语言是java，在单台物理机上部署了3个java模块，他们之间互相调用。服务p999耗时有时候会超过10s，按道理我们的业务不会停滞这么长时间，并且在长时间内只有一台机器多次出现了这个问题。下面是我们的分析流程：  登录机器查看WARN报警日志，事故发生时刻打印了大批WARN日志。进一步发现，在大批打印日志之前，有很长时间没有打印任何日志。怀">
 <meta property="og:locale" content="zh_CN">
@@ -61,7 +61,7 @@
 <meta property="article:tag" content="磁盘坏道">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
+<link rel="canonical" href="https://springzzj.github.io/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
 
 
 <script id="page-configurations">
@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

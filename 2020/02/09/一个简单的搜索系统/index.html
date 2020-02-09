@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://springzzj.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="本文翻译自Design a web crawler，主要描述了一个简单搜索系统的架构设计。 需求用例 基本需求  抓取一系列的URLs的内容，生成倒排索引、标题和摘要。这里假设标题和摘要是静态的，不需要随着搜索词而动态改变。 用户输入一个查询词，输出搜索到文章列表，每篇文章带有标题和摘要。 系统具有高可用性  扩展需求  搜索分析 个性化搜索结果 Page rank">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】一个简单的搜索系统">
+<meta property="og:url" content="https://springzzj.github.io/2020/02/09/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="SpringZZJ&#39;s Blog">
+<meta property="og:description" content="本文翻译自Design a web crawler，主要描述了一个简单搜索系统的架构设计。 需求用例 基本需求  抓取一系列的URLs的内容，生成倒排索引、标题和摘要。这里假设标题和摘要是静态的，不需要随着搜索词而动态改变。 用户输入一个查询词，输出搜索到文章列表，每篇文章带有标题和摘要。 系统具有高可用性  扩展需求  搜索分析 个性化搜索结果 Page rank">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/E15B3A1B41774E82A0D331677F4A88A0/58582">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/F107002384D34CF9A5DE1AD6E294CED1/58584">
+<meta property="article:published_time" content="2020-02-09T10:15:43.000Z">
+<meta property="article:modified_time" content="2020-02-09T05:07:19.846Z">
+<meta property="article:author" content="SpringZZJ">
+<meta property="article:tag" content="系统设计">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="搜索">
+<meta property="article:tag" content="倒排索引">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/E15B3A1B41774E82A0D331677F4A88A0/58582">
+
+<link rel="canonical" href="https://springzzj.github.io/2020/02/09/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>【译】一个简单的搜索系统 | SpringZZJ's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SpringZZJ's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">背着锄头的互联网农民</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/02/09/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【译】一个简单的搜索系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-09 10:15:43 / 修改时间：05:07:19" itemprop="dateCreated datePublished" datetime="2020-02-09T10:15:43Z">2020-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/09/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/09/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文翻译自<a href="https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/web_crawler/README.md" target="_blank" rel="noopener">Design a web crawler</a>，主要描述了一个简单搜索系统的架构设计。</p>
+<h2 id="需求用例">需求用例</h2>
+<h5 id="基本需求">基本需求</h5>
+<ul>
+<li>抓取一系列的URLs的内容，生成倒排索引、标题和摘要。这里假设标题和摘要是静态的，不需要随着搜索词而动态改变。</li>
+<li>用户输入一个查询词，输出搜索到文章列表，每篇文章带有标题和摘要。</li>
+<li>系统具有高可用性</li>
+</ul>
+<h5 id="扩展需求">扩展需求</h5>
+<ul>
+<li>搜索分析</li>
+<li>个性化搜索结果</li>
+<li>Page rank</li>
+</ul>
+<a id="more"></a>
+<h2 id="假设限制">假设限制</h2>
+<h5 id="状态假设">状态假设</h5>
+<ul>
+<li>具有热点问题，有些搜索词很热门</li>
+<li>仅支持匿名用户</li>
+<li>搜索耗时要非常短</li>
+<li>爬虫系统不能陷入死循环</li>
+<li>需要抓取10亿网页
+<ul>
+<li>网页内容需要定期的更新</li>
+<li>一般网页平均更新周期为一个月一次，热门网页需要更频繁
+<ul>
+<li>估算每个月大概需要抓取40亿网页</li>
+</ul></li>
+<li>每个页面平均大小为500KB</li>
+</ul></li>
+<li>每个月1000亿次查询</li>
+</ul>
+<h5 id="容量计算">容量计算</h5>
+<ul>
+<li>每个月需要存储2PB（500KB * 40亿）网页内容，3年需要存储72PB</li>
+<li>每秒1600次写请求</li>
+<li>每秒40000次查询</li>
+</ul>
+<h2 id="架构设计">架构设计</h2>
+<p><img src="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/E15B3A1B41774E82A0D331677F4A88A0/58582" /></p>
+<h2 id="爬虫系统">爬虫系统</h2>
+<p>假设我们有一个初始的待抓取的URL列表links_to_crawl，其中的URL根据受欢迎程度排序。另外我们使用表crawled_links存储已抓取到的页面URL和其内容signature，这里可以使用kv-nosql数据库。对于待抓取列表links_to_crawl，我们可以存放到redis的zset中。接下来我们描述抓取的整个流程：</p>
+<ul>
+<li>从redis的zset中取优先级最高的URL，并抓取内容计算signature
+<ul>
+<li>去crawled_links的数据库中查询相似的signature
+<ul>
+<li>如果查找到有相似的signature，说明之前已经有抓取到相似的页面，这时候什么都不做。</li>
+<li>否则，
+<ul>
+<li>添加一个任务到Reverse Index Service队列中用来生成倒排索引</li>
+<li>添加一个任务到Document Service队列中用来提取标题和摘要</li>
+<li>生成页面signature</li>
+<li>将该URL从links_to_crawl中删除</li>
+<li>将该URL和其内容signature加入到crawed_links数据库中</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="重复页面">重复页面</h5>
+<p>为了保证抓取不会陷入死循环，我们使用signature的机制来防止重复抓取。signature的计算可以根据页面内容计算，通常的方法有Jaccard相似度或者Cos相似度。当然在计算之前，需要对页面内容进行分词、提取关键字等将页面转换为向量。</p>
+<h5 id="更新频率">更新频率</h5>
+<p>一般来说，普通的页面每隔一周要重新抓取一遍以获得最新的内容，热门的网页需要更频繁一些。为了确认每个页面的更新频率，可以使用数据挖掘和统计分析的方式获得页面的更新频率，另外可以使用Robots.txt中建议的更新频率。</p>
+<h2 id="检索系统">检索系统</h2>
+<ul>
+<li>客户端发送http请求到Web服务器</li>
+<li>Web服务器转发请求到Query Api服务，Query Api服务会做以下事情
+<ul>
+<li>解析Query</li>
+<li>删除其中的标点符号</li>
+<li>修正拼写错误</li>
+<li>归一化大小写</li>
+</ul></li>
+<li>Reverse Index倒排索引服务返回相关的文档</li>
+<li>Document Service服务返回相关文档的标题和摘要</li>
+</ul>
+<h2 id="扩展架构">扩展架构</h2>
+<p><img src="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/F107002384D34CF9A5DE1AD6E294CED1/58584" /></p>
+<p>以下列了一些可能的优化措施：</p>
+<ul>
+<li>针对热门查询，可以使用内存缓存数据库，比如Redis、Memcache，减少系统的耗时，承接更大的流量。</li>
+<li>Reverse Index服务和Document Index服务采用分布式系统</li>
+<li>域名解析可能会是瓶颈，需要自建DNS解析器并定期更新</li>
+<li>抓取系统使用连接池或者UDP来提升抓取性能</li>
+<li>保证带宽是足够用的</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag"># 系统设计</a>
+              <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+              <a href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag"># 搜索</a>
+              <a href="/tags/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/" rel="tag"># 倒排索引</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/" rel="prev" title="程序员未来最重要的技能是什么？">
+      <i class="fa fa-chevron-left"></i> 程序员未来最重要的技能是什么？
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求用例"><span class="nav-number">1.</span> <span class="nav-text">需求用例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本需求"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">基本需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展需求"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">扩展需求</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设限制"><span class="nav-number">2.</span> <span class="nav-text">假设限制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#状态假设"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">状态假设</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#容量计算"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">容量计算</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构设计"><span class="nav-number">3.</span> <span class="nav-text">架构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫系统"><span class="nav-number">4.</span> <span class="nav-text">爬虫系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重复页面"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">重复页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新频率"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">更新频率</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索系统"><span class="nav-number">5.</span> <span class="nav-text">检索系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展架构"><span class="nav-number">6.</span> <span class="nav-text">扩展架构</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SpringZZJ</p>
+  <div class="site-description" itemprop="description">在百度腾讯种地</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/springzzj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;springzzj" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SpringZZJ</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'qqwwTaFX0gnhiYRpQ8w4tTxN-gzGzoHsz',
+      appKey: 'OduDEgm12Tf6X3H9Sv19d3M3',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

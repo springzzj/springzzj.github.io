@@ -49,7 +49,7 @@
   <meta name="description" content="在百度腾讯种地">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SpringZZJ&#39;s Blog">
-<meta property="og:url" content="https://springzzj.github.io/tags/xgboost/index.html">
+<meta property="og:url" content="https://springzzj.github.io/tags/Xgboost/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
 <meta property="og:description" content="在百度腾讯种地">
 <meta property="og:locale" content="zh_CN">
@@ -57,7 +57,7 @@
 <meta property="article:tag" content="互联网、C++、Java、深度学习、机器学习、地图、自动驾驶">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://springzzj.github.io/tags/xgboost/">
+<link rel="canonical" href="https://springzzj.github.io/tags/Xgboost/">
 
 
 <script id="page-configurations">
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title>标签: xgboost | SpringZZJ's Blog</title>
+  <title>标签: Xgboost | SpringZZJ's Blog</title>
   
 
 
@@ -185,7 +185,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h1 class="collection-header">xgboost
+        <h1 class="collection-header">Xgboost
           <small>标签</small>
         </h1>
       </div>
@@ -200,55 +200,15 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-01-28T15:28:46Z"
-              content="2020-01-28">
-          01-28
+              datetime="2020-01-27T23:18:56Z"
+              content="2020-01-27">
+          01-27
         </time>
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/" itemprop="url">
-            <span itemprop="name">Kaggle:预测自行车租赁数量(Bike Sharing Demand)</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-23T11:51:06Z"
-              content="2020-01-23">
-          01-23
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/23/Titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-2/" itemprop="url">
-            <span itemprop="name">Titanic问题预测存活(2)</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-22T23:55:27Z"
-              content="2020-01-22">
-          01-22
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/" itemprop="url">
-            <span itemprop="name">Titanic问题预测存活(1)</span>
+          <a class="post-title-link" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/" itemprop="url">
+            <span itemprop="name">Kaggle:预测未来销售(Predict Future Sales)</span>
           </a>
       </h2>
 
@@ -326,7 +286,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -339,7 +299,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -417,6 +377,77 @@
   
   
   <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'qqwwTaFX0gnhiYRpQ8w4tTxN-gzGzoHsz',
+      appKey: 'OduDEgm12Tf6X3H9Sv19d3M3',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+anvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>

@@ -46,23 +46,22 @@
   };
 </script>
 
-  <meta name="description" content="Kaggle的该题目是NLP入门的经典案列，本文也是出于这样的目的来学习NLP常用技术，主要参考Overview。 数据预处理 训练数据中包含了电影的评论内容和情感标签，评论内容是英文的，里面有可能包含各种特殊字符，也有可能是网页内容。测试数据只包含了评论内容，要求预测该评论对应的情感标签。评论内容是自然语言，需要先对评论做预处理，包括去除Html标签、去除特殊字符、分词、去除停用词等。">
+  <meta name="description" content="结论  当前股价82元，对应市值1.5w亿。PEV&#x3D;市值&#x2F;内含价值&#x3D;1.25左右，合理偏低。 新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。 预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。  整体 2020-02-20，中国平安发布了2019年的年报。基本内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(1)">
-<meta property="og:url" content="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="中国平安2019年报分析">
+<meta property="og:url" content="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
-<meta property="og:description" content="Kaggle的该题目是NLP入门的经典案列，本文也是出于这样的目的来学习NLP常用技术，主要参考Overview。 数据预处理 训练数据中包含了电影的评论内容和情感标签，评论内容是英文的，里面有可能包含各种特殊字符，也有可能是网页内容。测试数据只包含了评论内容，要求预测该评论对应的情感标签。评论内容是自然语言，需要先对评论做预处理，包括去除Html标签、去除特殊字符、分词、去除停用词等。">
+<meta property="og:description" content="结论  当前股价82元，对应市值1.5w亿。PEV&#x3D;市值&#x2F;内含价值&#x3D;1.25左右，合理偏低。 新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。 预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。  整体 2020-02-20，中国平安发布了2019年的年报。基本内">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-28T23:05:45.000Z">
-<meta property="article:modified_time" content="2020-01-28T15:28:20.647Z">
+<meta property="article:published_time" content="2020-02-22T11:22:00.000Z">
+<meta property="article:modified_time" content="2020-02-22T03:32:30.100Z">
 <meta property="article:author" content="SpringZZJ">
-<meta property="article:tag" content="Kaggle">
-<meta property="article:tag" content="NLP">
-<meta property="article:tag" content="情感分析">
-<meta property="article:tag" content="TF&#x2F;IDF">
+<meta property="article:tag" content="中国平安">
+<meta property="article:tag" content="第四季度">
+<meta property="article:tag" content="年报">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/">
 
 
 <script id="page-configurations">
@@ -74,7 +73,7 @@
   };
 </script>
 
-  <title>Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(1) | SpringZZJ's Blog</title>
+  <title>中国平安2019年报分析 | SpringZZJ's Blog</title>
   
 
 
@@ -189,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(1)
+          中国平安2019年报分析
         </h1>
 
         <div class="post-meta">
@@ -213,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-28 23:05:45 / 修改时间：15:28:20" itemprop="dateCreated datePublished" datetime="2020-01-28T23:05:45Z">2020-01-28</time>
+              <time title="创建时间：2020-02-22 11:22:00 / 修改时间：03:32:30" itemprop="dateCreated datePublished" datetime="2020-02-22T11:22:00Z">2020-02-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,8 +220,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
+                  <a href="/categories/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/" itemprop="url" rel="index">
+                    <span itemprop="name">投资理财</span>
                   </a>
                 </span>
             </span>
@@ -243,8 +242,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,18 +258,180 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Kaggle的该题目是NLP入门的经典案列，本文也是出于这样的目的来学习NLP常用技术，主要参考<a href="https://www.kaggle.com/c/word2vec-nlp-tutorial/overview" target="_blank" rel="noopener">Overview</a>。</p>
-<h5 id="数据预处理">数据预处理</h5>
-<p>训练数据中包含了电影的评论内容和情感标签，评论内容是英文的，里面有可能包含各种特殊字符，也有可能是网页内容。测试数据只包含了评论内容，要求预测该评论对应的情感标签。评论内容是自然语言，需要先对评论做预处理，包括去除Html标签、去除特殊字符、分词、去除停用词等。</p>
+        <h4 id="结论">结论</h4>
+<ul>
+<li>当前股价82元，对应市值1.5w亿。PEV=市值/内含价值=1.25左右，合理偏低。</li>
+<li>新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。</li>
+<li>预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。</li>
+</ul>
+<h4 id="整体">整体</h4>
+<p>2020-02-20，中国平安发布了2019年的年报。基本内容如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>营收</th>
+<th>营运利润</th>
+<th>净利润</th>
+<th>内含价值</th>
+<th>新业务价值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.17w亿(+19.7%)</td>
+<td>1329亿(+18.1%)</td>
+<td>1494亿(38.1%)</td>
+<td>1.2w亿(+19.8%)</td>
+<td>759亿(+5.1%)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>个人客户数</th>
+<th>个人业务营运利润</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2亿(+11.2%)</td>
+<td>1228亿(+25.7%)</td>
+<td>92.4%</td>
+</tr>
+</tbody>
+</table>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def review_to_words(raw_review):</span><br><span class="line">    #处理网页信息</span><br><span class="line">    review_text &#x3D; BeautifulSoup(raw_review).get_text() </span><br><span class="line">    #替换非字母字符为空格</span><br><span class="line">    letters_only &#x3D; re.sub(&quot;[^a-zA-Z]&quot;, &quot; &quot;, review_text) </span><br><span class="line">    words &#x3D; letters_only.lower().split()    </span><br><span class="line">    #移除其中的停用词</span><br><span class="line">    stops &#x3D; set(stopwords.words(&quot;english&quot;)) </span><br><span class="line">    meaningful_words &#x3D; [w for w in words if not w in stops]   </span><br><span class="line">    return( &quot; &quot;.join( meaningful_words ))   </span><br><span class="line"></span><br><span class="line">train &#x3D; pd.read_csv(&quot;data&#x2F;labeledTrainData.tsv&quot;, header&#x3D;0, delimiter&#x3D;&quot;\t&quot;, quoting&#x3D;3)</span><br><span class="line">print(train.info())</span><br><span class="line">print(train.head())</span><br><span class="line"></span><br><span class="line">num_reviews &#x3D; train[&quot;review&quot;].size</span><br><span class="line">clean_train_reviews &#x3D; []</span><br><span class="line">for i in range( 0, num_reviews ):</span><br><span class="line">    clean_train_reviews.append( review_to_words( train[&quot;review&quot;][i] )) </span><br><span class="line"></span><br><span class="line">test &#x3D; pd.read_csv(&quot;data&#x2F;testData.tsv&quot;, header&#x3D;0, delimiter&#x3D;&quot;\t&quot;, quoting&#x3D;3 )</span><br><span class="line">num_reviews &#x3D; len(test[&quot;review&quot;])</span><br><span class="line">clean_test_reviews &#x3D; []</span><br><span class="line">for i in range(0,num_reviews):</span><br><span class="line">    clean_review &#x3D; review_to_words( test[&quot;review&quot;][i] )</span><br><span class="line">    clean_test_reviews.append( clean_review )</span><br></pre></td></tr></table></figure>
-<h5 id="特征表示">特征表示</h5>
-<p>现在我们已经把一条评论转换为word列表，但是模型训练时候需要是数值类型的，所以需要对评论进行特征表示。一种简单的想法是使用One-Hot编码。将评论转换为一个向量，向量长度为所有出现过的word的个数，如果某个word在该评论中出现过，则设置向量的该位置为1，这样就将一条评论转换为一个向量。</p>
-<p>但是这种方法有个问题是向量长度可能会非常长，一种优化是只提取出现次数最多的n个word作为向量下标，向量的值在该条评论中该Word的出现次数，sklearn中CountVectorizer就是做了这样的事情。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#5000的含义向量最大长度为5000，选取次数最多的5000个单词作为向量下标</span><br><span class="line">vectorizer &#x3D; CountVectorizer(analyzer &#x3D; &quot;word&quot;, tokenizer &#x3D; None, preprocessor &#x3D; None, stop_words &#x3D; None, max_features &#x3D; 5000)</span><br><span class="line">train_data_features &#x3D; vectorizer.fit_transform(clean_train_reviews)</span><br><span class="line">train_data_features &#x3D; pd.DataFrame(train_data_features.toarray())</span><br><span class="line"></span><br><span class="line">t_data_features &#x3D; vectorizer.transform(clean_test_reviews)</span><br><span class="line">test_data_features &#x3D; test_data_features.toarray()</span><br></pre></td></tr></table></figure></p>
-<h5 id="模型训练">模型训练</h5>
-<p>这里简单的使用随机森林进行训练预测，得到0.84的精度。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">forest &#x3D; RandomForestClassifier(n_estimators &#x3D; 100) </span><br><span class="line">forest &#x3D; forest.fit( train_data_features, train[&quot;sentiment&quot;] )</span><br><span class="line">result &#x3D; forest.predict(test_data_features)</span><br><span class="line">output &#x3D; pd.DataFrame( data&#x3D;&#123;&quot;id&quot;:test[&quot;id&quot;], &quot;sentiment&quot;:result&#125; )</span><br><span class="line">output.to_csv( &quot;submission.csv&quot;, index&#x3D;False, quoting&#x3D;3 )</span><br></pre></td></tr></table></figure></p>
-<h5 id="特征表示优化">特征表示优化</h5>
-<p>除了上面的CountVectorizer可以做NLP编码，sklean还提供了TfidfVectorizer来做NLP编码。它同样会选取出现次数最多的n个word做为向量下标，但是向量的值为每个Word的TF-IDF。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torizer &#x3D; TfidfVectorizer(analyzer &#x3D; &quot;word&quot;, tokenizer &#x3D; None, preprocessor &#x3D; None, stop_words &#x3D; None, max_features &#x3D; 5000)</span><br><span class="line">train_data_features &#x3D; vectorizer.fit_transform(clean_train_reviews)</span><br><span class="line">train_data_features &#x3D; pd.DataFrame(train_data_features.toarray())</span><br><span class="line"></span><br><span class="line">test_data_features &#x3D; vectorizer.transform(clean_test_reviews)</span><br><span class="line">test_data_features &#x3D; test_data_features.toarray()</span><br></pre></td></tr></table></figure></p>
+<p>营运利润是从净利润中剔除短期波动性较大的损益项目和非日常性的一次性的营收收支。因为平安有很多投资的收益，收益不稳定，所以使用营运利润更准确。还有一种说法是营运利润限制投资收益率固定在5%，剩下的收益都是非营运利润。</p>
+<p>营运利润方面没有什么问题，保险公司的利润增速主要和前几年新业务价值的增速相关（类似于房地产的预售），大概延迟1-2年。</p>
+<p>净利润方面，因为投资收益、折现率变动、一次性所得税减少等因素使得净利润增速要高于营运利润增速。另外因为多计提了207亿元的责任准备金，所以实际净利润增速大概在50%左右。</p>
+<p>中国平安的收入主要来源于四部分：寿险及健康险，财产保险业务，平安银行，其他收入。下面依次介绍：</p>
+<h4 id="寿险及健康险">寿险及健康险</h4>
+<p>该业务主要针对寿险、重疾险、分红险、意外险、等涉及到人身健康的保险业务。保费收上来之后可以用来投资，投资收益也是算到利润里面的，一般是低风险收益，收益率大概在5%左右。</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>收入</th>
+<th>占比</th>
+<th>营运利润</th>
+<th>净资产投资收益</th>
+<th>内含价值</th>
+<th>新业务价值</th>
+<th>新业务价值率</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7170亿(+25.7%)</td>
+<td>61%</td>
+<td>880亿(+24.7%)</td>
+<td>117亿(+31%)</td>
+<td>7575亿(+23.5%)</td>
+<td>759亿(+5.1%)</td>
+<td>47.3(+3.6%)</td>
+</tr>
+</tbody>
+</table>
+<p>营运利润主要来自于四个方面：</p>
+<ul>
+<li>剩余边际摊销：保单未来现金流的在当前的贴现值，类似于内含价值的计算方式。各期剩余边际摊销的增长主要来自于当期新业务的增长。</li>
+<li>净资产投资收益：公司净资产（总资产-负债）的投资收益</li>
+<li>息差收入：长期投资收益率假设与准备金折现率的差异导致。长期投资收益率以5%为准，准备金是国家规定的为了防止金融风险的现金储备，默认按照750天国债的平均收益率。这两个收益率的差值就是利润差值，但是跟国家政策密切相关。</li>
+<li>营运偏差及其他。主要是指公司正常营运和之前模型假设的比较，如果公司实际运营好于模型预测（保单继续率、退保率、赔付率）则该值为正。如果坏于预测值则该值为负。</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>剩余边际摊销</th>
+<th>净资产投资收益</th>
+<th>息差收入</th>
+<th>营运偏差及其他</th>
+<th>税前营运总利润</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>744亿(+19.5%)</td>
+<td>117亿(+31%)</td>
+<td>39亿(-21.8%)</td>
+<td>104亿(-52.2%)</td>
+<td>1005亿(+2.6%)</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到税前营运利润只增加了2.6%，根本原因是营运偏差及其他利润下降了52%，主要受保单继续率和费用增加超过预期。</p>
+<p>新业务价值彰显一家保险公司的成长能力，和未来利润增长成正比，可以算是看一家寿险公司最重要的数据了，影响因素包含：新客户数量、新客户质量、保单质量等。由于前几年的野蛮增长，使得这两年新业务价值增速变慢，目前平安也做做改革，包括科技助力（使用互联网科技手段拉来更多的客户）、代理人优化（提升代理人素质，拉拢更多的高客户质量）、保单结构优化（争取更多的长期保障合同）等。可以看到目前中国平安的新业务价值率为47.3%，逐步提升而且有提升空间（友邦的新业务价值率为60%左右）。代理人渠道新业务价值为682亿元（+5.9%），代理人新业务价值率为64%（+7.8%）。国内保险行业仍然有较大的发展空间，平安作为其中的龙头，我觉的又能力做好改革，走出困境。</p>
+<h4 id="财产保险业务">财产保险业务</h4>
+<p>主要针对车险、企财险、工程险、货运险、责任险、保证险、信用险、家财险等的保险业务。产险大多为短期业务，当期就可以看到经营情况，所以不像寿险那样比较麻烦。</p>
+<table>
+<thead>
+<tr class="header">
+<th>收入</th>
+<th>占比</th>
+<th>营运利润</th>
+<th>投资收益</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2505亿(+11%)</td>
+<td>21%</td>
+<td>208亿(+70%)</td>
+<td>179亿(+63%)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="平安银行">平安银行</h4>
+<table>
+<thead>
+<tr class="header">
+<th>收入</th>
+<th>占比</th>
+<th>净利润</th>
+<th>营运利润</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1379亿(+18%)</td>
+<td>12%</td>
+<td>281亿(13.6%)</td>
+<td>163亿(13.5%)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="其他收入">其他收入</h4>
+<p>这里面主要包含信托业务、证券业务、其他资产管理业务、科技业务（陆金所控股、金融壹账通、平安好医生、平安医保科技、汽车之家）、其他业务及合并抵消等。</p>
+<table>
+<thead>
+<tr class="header">
+<th>收入</th>
+<th>占比</th>
+<th>营运利润</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>632亿(-2%)</td>
+<td>6%</td>
+<td>78亿(-50%)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="风险">风险</h4>
+<ul>
+<li>新业务增长不及预期</li>
+</ul>
 
     </div>
 
@@ -280,10 +441,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Kaggle/" rel="tag"># Kaggle</a>
-              <a href="/tags/NLP/" rel="tag"># NLP</a>
-              <a href="/tags/%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/" rel="tag"># 情感分析</a>
-              <a href="/tags/TF-IDF/" rel="tag"># TF/IDF</a>
+              <a href="/tags/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89/" rel="tag"># 中国平安</a>
+              <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%AD%A3%E5%BA%A6/" rel="tag"># 第四季度</a>
+              <a href="/tags/%E5%B9%B4%E6%8A%A5/" rel="tag"># 年报</a>
           </div>
 
         
@@ -292,13 +452,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/" rel="prev" title="Kaggle:预测自行车租赁数量(Bike Sharing Demand)">
-      <i class="fa fa-chevron-left"></i> Kaggle:预测自行车租赁数量(Bike Sharing Demand)
+    <a href="/2020/02/18/%E8%A7%A3%E5%86%B3Bug%E7%9A%84%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F/" rel="prev" title="解决Bug的思维方式">
+      <i class="fa fa-chevron-left"></i> 解决Bug的思维方式
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/" rel="next" title="Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(2)">
-      Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(2) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -359,7 +516,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据预处理"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特征表示"><span class="nav-number">2.</span> <span class="nav-text">特征表示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模型训练"><span class="nav-number">3.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特征表示优化"><span class="nav-number">4.</span> <span class="nav-text">特征表示优化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体"><span class="nav-number">2.</span> <span class="nav-text">整体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寿险及健康险"><span class="nav-number">3.</span> <span class="nav-text">寿险及健康险</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#财产保险业务"><span class="nav-number">4.</span> <span class="nav-text">财产保险业务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平安银行"><span class="nav-number">5.</span> <span class="nav-text">平安银行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他收入"><span class="nav-number">6.</span> <span class="nav-text">其他收入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#风险"><span class="nav-number">7.</span> <span class="nav-text">风险</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

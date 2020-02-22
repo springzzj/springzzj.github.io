@@ -184,6 +184,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/" class="post-title-link" itemprop="url">Titanic问题预测存活(1)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-22 23:55:27 / 修改时间：16:16:46" itemprop="dateCreated datePublished" datetime="2020-01-22T23:55:27Z">2020-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
+                    <span itemprop="name">Kaggle</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文针对Kaggle上面的Titanic问题进行了入门学习，搭建了一个简单的xgboost基础模型，达到了75%的精度。</p>
+<h5 id="预处理">预处理</h5>
+<p>Titanic的数据中共有12列属性，包括passengerId:乘客ID，Survived:存活情况，Pclass:船票级别，Name:乘客姓名, Sex:性别, Age:年龄, SibSp:船上的兄弟姐妹以及配偶的人数, Parch:船上的父母以及子女的人数, Ticket:船票编号, Fare:工资, Cabin:所在船舱, Embarked:登船的港口。xgboost的输入需要是数值型数据，所以这里需要将非数值类型转换为数值类型，另外xgboost其实可以处理缺失数据，本不必要对缺失数据做处理。每个属性的预处理代码如下：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/23/titanic%E9%97%AE%E9%A2%98%E9%A2%84%E6%B5%8B%E5%AD%98%E6%B4%BB-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/21/strace%E5%91%BD%E4%BB%A4%E8%B0%83%E8%AF%95JVM-Thread/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,100 +1135,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/" class="post-title-link" itemprop="url">JVM长时间Stop The World问题</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-15 23:04:09 / 修改时间：15:08:53" itemprop="dateCreated datePublished" datetime="2020-01-15T23:04:09Z">2020-01-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>近期，线上服务偶尔会出现超时情况。说一下背景，我们的开发语言是java，在单台物理机上部署了3个java模块，他们之间互相调用。服务p999耗时有时候会超过10s，按道理我们的业务不会停滞这么长时间，并且在长时间内只有一台机器多次出现了这个问题。下面是我们的分析流程：</p>
-<ol type="1">
-<li><p>登录机器查看WARN报警日志，事故发生时刻打印了大批WARN日志。进一步发现，在大批打印日志之前，有很长时间没有打印任何日志。怀疑可能是java模块GC导致的stop the world。</p></li>
-<li><p>JVM中增加了-XX:+PrintGC参数，会将gc日志输出到指定文件。查看gc日志，发现确实有长时间stop the world的情况，并和问题发生时间吻合。但是有时候出现在minor gc中，有时候出现在普通的safepoint安全点位置。说明并不单纯是gc导致的，但是问题发生原因肯定和stop the world有关。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1206,7 +1205,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1219,7 +1218,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

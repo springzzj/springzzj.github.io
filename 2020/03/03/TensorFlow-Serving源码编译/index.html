@@ -54,7 +54,7 @@
 <meta property="og:description" content="在上一篇文章中我们学习了如何来搭建TensorFlow-Serving的Docker环境，但是在启动TensorFlow-Serving服务的时候，会有一行日志： 123I external&#x2F;org_tensorflow&#x2F;tensorflow&#x2F;core&#x2F;platform&#x2F;cpu_feature_guard.cc:141]Your CPU suppo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-03T13:27:55.000Z">
-<meta property="article:modified_time" content="2020-03-03T05:59:57.721Z">
+<meta property="article:modified_time" content="2020-03-03T06:07:58.738Z">
 <meta property="article:author" content="SpringZZJ">
 <meta property="article:tag" content="TensorFlow">
 <meta property="article:tag" content="源码编译">
@@ -212,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-03 13:27:55 / 修改时间：05:59:57" itemprop="dateCreated datePublished" datetime="2020-03-03T13:27:55Z">2020-03-03</time>
+              <time title="创建时间：2020-03-03 13:27:55 / 修改时间：06:07:58" itemprop="dateCreated datePublished" datetime="2020-03-03T13:27:55Z">2020-03-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +273,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 启动Docker</span><br><span class="line">nohup sudo docker run -p 8502:8500 -p 8501:8501 --name tfserving_testnet  --mount type&#x3D;bind,source&#x3D;&#x2F;home&#x2F;tensorflow&#x2F;xception,target&#x3D;&#x2F;models&#x2F;xception  -e MODEL_NAME&#x3D;xception -t tensorflow&#x2F;serving:nightly-devel &amp; #绑定端口并启动Docker</span><br><span class="line"></span><br><span class="line"># 进入Docker</span><br><span class="line">sudo docker exec -it containerId bash</span><br><span class="line"></span><br><span class="line"># 启动tensorflow-serving</span><br><span class="line">cd &#x2F;tensorflow_serving</span><br><span class="line">bazel-bin&#x2F;tensorflow_serving&#x2F;model_servers&#x2F;tensorflow_model_server --port&#x3D;8500 --rest_api_port&#x3D;8501 --model_name&#x3D;xception --model_base_path&#x3D;&#x2F;models&#x2F;xception</span><br></pre></td></tr></table></figure>
 <p>可以看到，这次启动时没有出现Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA的报警。</p>
 <h5 id="后续">后续</h5>
-<p>但是使用这种方法编译后的TensorFlow-Serving，在实际测试时候并没有提升预测的耗时性能，具体原因还需要后续继续分析。</p>
+<p>但是使用这种方法编译后的TensorFlow-Serving，在实际测试时候并没有提升预测的耗时性能，具体原因还需要后续继续分析。另外TensorFlow的编译最好使用Docker环境编译，在物理机上涉及到很多环境变量和其他软件版本的不匹配问题。</p>
 
     </div>
 
@@ -297,7 +297,10 @@
     <a href="/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/" rel="prev" title="使用Grpc调用TensorFlow-Serving服务">
       <i class="fa fa-chevron-left"></i> 使用Grpc调用TensorFlow-Serving服务
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/" rel="next" title="Java调用TensorFlow-Serving">
+      Java调用TensorFlow-Serving <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -372,7 +375,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -385,7 +388,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

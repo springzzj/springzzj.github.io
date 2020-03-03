@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://springzzj.github.io/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
+    <loc>https://springzzj.github.io/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/</loc>
     
-    <lastmod>2020-03-03T05:59:57.721Z</lastmod>
+    <lastmod>2020-03-03T14:12:21.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://springzzj.github.io/2020/01/16/java-tensorflow-md/</loc>
+    
+    <lastmod>2020-03-03T13:49:31.153Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://springzzj.github.io/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/</loc>
     
-    <lastmod>2020-03-02T15:24:15.899Z</lastmod>
+    <lastmod>2020-03-03T13:31:17.964Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://springzzj.github.io/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
+    
+    <lastmod>2020-03-03T06:07:58.738Z</lastmod>
     
   </url>
   
@@ -166,13 +180,6 @@
     <loc>https://springzzj.github.io/googlebddd24d26c36e362.html</loc>
     
     <lastmod>2020-01-16T04:11:22.185Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://springzzj.github.io/2020/01/16/java-tensorflow-md/</loc>
-    
-    <lastmod>2020-01-15T15:37:59.605Z</lastmod>
     
   </url>
   

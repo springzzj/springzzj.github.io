@@ -53,16 +53,16 @@
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
 <meta property="og:description" content="在上一篇文章中，我们学习了在Mac机器上搭建TensorFlow-Serving的示例，并提供了使用Http接口访问的方法。本文中，我们将尝试使用Grpc接口访问TensorFlow-Serving服务。 启动服务 1nohup sudo docker run -p 8502:8500 -p 8501:8501 --name tfserving_testnet  --mount type&amp;#x3D">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/EBF9C886C264480E87C380E393844E20/61106">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/772AF1B1CE824A6AB3E118620980E5EB/61113">
 <meta property="article:published_time" content="2020-03-02T23:07:30.000Z">
-<meta property="article:modified_time" content="2020-03-02T15:24:15.899Z">
+<meta property="article:modified_time" content="2020-03-03T13:31:17.964Z">
 <meta property="article:author" content="SpringZZJ">
-<meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="tensorflow">
+<meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="tensorflow serving">
 <meta property="article:tag" content="grpc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/EBF9C886C264480E87C380E393844E20/61106">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/772AF1B1CE824A6AB3E118620980E5EB/61113">
 
 <link rel="canonical" href="https://springzzj.github.io/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/">
 
@@ -213,10 +213,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-02 23:07:30 / 修改时间：15:24:15" itemprop="dateCreated datePublished" datetime="2020-03-02T23:07:30Z">2020-03-02</time>
+              <time title="创建时间：2020-03-02 23:07:30" itemprop="dateCreated datePublished" datetime="2020-03-02T23:07:30Z">2020-03-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-03 13:31:17" itemprop="dateModified" datetime="2020-03-03T13:31:17Z">2020-03-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -267,7 +273,7 @@
 <p>其中，本机的8502端口对应Docker的8500端口（GRPC端口），本机8501端口对应Docker的8501端口（HTTP端口）。</p>
 <a id="more"></a>
 <h5 id="模型信息">模型信息</h5>
-<p>在写Gprc服务之前，需要明确模型的名字、输入、输出等。我们使用curl http://localhost:8501/v1/models/xception/metadata可以看到Docker中模型的基本信息。 <img src="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/EBF9C886C264480E87C380E393844E20/61106" /> 其中，方框内的内容要在下面Client的代码中用到。</p>
+<p>在写Gprc服务之前，需要明确模型的名字、输入、输出等。我们使用curl http://localhost:8501/v1/models/xception/metadata可以看到Docker中模型的基本信息。 <img src="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/772AF1B1CE824A6AB3E118620980E5EB/61113" /> 其中，方框内的内容要在下面Client的代码中用到。</p>
 <h5 id="python-grpc-client">Python Grpc Client</h5>
 <p>下面代码是python的客户端代码，输入一张图片，输出模型对这张图片的打分。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#encoding&#x3D;utf8</span><br><span class="line">import requests</span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow.compat.v1 as tf</span><br><span class="line">import time</span><br><span class="line">tf.disable_v2_behavior()</span><br><span class="line">np.set_printoptions(threshold&#x3D;np.inf)</span><br><span class="line">np.set_printoptions(precision&#x3D;3)</span><br><span class="line"></span><br><span class="line">from tensorflow.keras.models import load_model</span><br><span class="line">from tensorflow.keras.preprocessing import image</span><br><span class="line">from keras.applications import xception</span><br><span class="line">from tensorflow.python.platform import gfile</span><br><span class="line"></span><br><span class="line">from tensorflow_serving.apis import predict_pb2</span><br><span class="line">from tensorflow_serving.apis import prediction_service_pb2_grpc</span><br><span class="line">import grpc</span><br><span class="line"></span><br><span class="line">tf.app.flags.DEFINE_string(&#39;server&#39;, &#39;127.0.0.1:8502&#39;, &#39;PredictionService host:port&#39;)</span><br><span class="line">FLAGS &#x3D; tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line">def prediction():</span><br><span class="line">    images &#x3D; image.load_img(&quot;test.jpg&quot;, target_size&#x3D;(480, 480))</span><br><span class="line">    x &#x3D; image.img_to_array(images)</span><br><span class="line">    x &#x3D; np.expand_dims(x, axis&#x3D;0)</span><br><span class="line">    image_np &#x3D; xception.preprocess_input(x)</span><br><span class="line"></span><br><span class="line">    options &#x3D; [(&#39;grpc.max_send_message_length&#39;, 1000 * 1024 * 1024), (&#39;grpc.max_receive_message_length&#39;, 1000 * 1024 * 1024)]</span><br><span class="line">    channel &#x3D; grpc.insecure_channel(FLAGS.server, options &#x3D; options)</span><br><span class="line">    stub &#x3D; prediction_service_pb2_grpc.PredictionServiceStub(channel)</span><br><span class="line">    request &#x3D; predict_pb2.PredictRequest()</span><br><span class="line">    request.model_spec.name &#x3D; &#39;xception&#39; #对应上图第一个方框</span><br><span class="line">    request.model_spec.signature_name &#x3D; &#39;serving_default&#39; #对应上图第二个方框</span><br><span class="line">    request.inputs[&#39;in&#39;].CopyFrom(tf.make_tensor_proto(image_np)) #in对应上图第三个方框，为模型的输入Name</span><br><span class="line"></span><br><span class="line">    result_future &#x3D; stub.Predict.future(request, 10.0)  # 10 secs timeout</span><br><span class="line">    result &#x3D; result_future.result()</span><br><span class="line">    print result</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">    prediction()</span><br></pre></td></tr></table></figure></p>
 
@@ -279,8 +285,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
               <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
               <a href="/tags/tensorflow-serving/" rel="tag"># tensorflow serving</a>
               <a href="/tags/grpc/" rel="tag"># grpc</a>
           </div>
@@ -372,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -385,7 +391,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

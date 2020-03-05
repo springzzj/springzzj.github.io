@@ -46,22 +46,25 @@
   };
 </script>
 
-  <meta name="description" content="结论  当前股价82元，对应市值1.5w亿。PEV&#x3D;市值&#x2F;内含价值&#x3D;1.25左右，合理偏低。 新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。 预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。  整体 2020-02-20，中国平安发布了2019年的年报。基本内">
+  <meta name="description" content="微服务有了Docker的加持快速的流行了起来，但是如何管理这些Docker容器呢？Kubernetes是Google开发的，一种适用于生产环境大规模编排容器的管理平台。本文将在单机上以一个简单的例子来介绍Kubernetes的使用。 安装Kubernetes 1yum install -y etcd kubernetes 修改apiserver配置文件，将--admission-control参数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中国平安2019年报分析">
-<meta property="og:url" content="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/index.html">
+<meta property="og:title" content="运行第一个kubernetes应用">
+<meta property="og:url" content="https://springzzj.github.io/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
-<meta property="og:description" content="结论  当前股价82元，对应市值1.5w亿。PEV&#x3D;市值&#x2F;内含价值&#x3D;1.25左右，合理偏低。 新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。 预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。  整体 2020-02-20，中国平安发布了2019年的年报。基本内">
+<meta property="og:description" content="微服务有了Docker的加持快速的流行了起来，但是如何管理这些Docker容器呢？Kubernetes是Google开发的，一种适用于生产环境大规模编排容器的管理平台。本文将在单机上以一个简单的例子来介绍Kubernetes的使用。 安装Kubernetes 1yum install -y etcd kubernetes 修改apiserver配置文件，将--admission-control参数">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-22T11:22:00.000Z">
-<meta property="article:modified_time" content="2020-02-22T03:32:30.100Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/25351B714E18456B891162172C4E983F/61138">
+<meta property="article:published_time" content="2020-03-05T10:30:51.000Z">
+<meta property="article:modified_time" content="2020-03-05T03:15:26.799Z">
 <meta property="article:author" content="SpringZZJ">
-<meta property="article:tag" content="中国平安">
-<meta property="article:tag" content="第四季度">
-<meta property="article:tag" content="年报">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="service">
+<meta property="article:tag" content="replicationController">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/25351B714E18456B891162172C4E983F/61138">
 
-<link rel="canonical" href="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/">
+<link rel="canonical" href="https://springzzj.github.io/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -73,7 +76,7 @@
   };
 </script>
 
-  <title>中国平安2019年报分析 | SpringZZJ's Blog</title>
+  <title>运行第一个kubernetes应用 | SpringZZJ's Blog</title>
   
 
 
@@ -188,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          中国平安2019年报分析
+          运行第一个kubernetes应用
         </h1>
 
         <div class="post-meta">
@@ -212,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-22 11:22:00 / 修改时间：03:32:30" itemprop="dateCreated datePublished" datetime="2020-02-22T11:22:00Z">2020-02-22</time>
+              <time title="创建时间：2020-03-05 10:30:51 / 修改时间：03:15:26" itemprop="dateCreated datePublished" datetime="2020-03-05T10:30:51Z">2020-03-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +223,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/" itemprop="url" rel="index">
-                    <span itemprop="name">投资理财</span>
+                  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
                   </a>
                 </span>
             </span>
@@ -242,8 +245,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/22/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -258,180 +261,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="结论">结论</h4>
-<ul>
-<li>当前股价82元，对应市值1.5w亿。PEV=市值/内含价值=1.25左右，合理偏低。</li>
-<li>新业务价值增长5.1%，继续探底。看好未来中国平安在代理人和较长险的优化，推动新业务价值率继续提升，增长重新恢复到2位数。需重点关注。</li>
-<li>预计未来利润能继续维持20%左右的增长，但是如果新业务价值增长持续放缓，有可能影响到未来的利润增速。</li>
-</ul>
-<h4 id="整体">整体</h4>
-<p>2020-02-20，中国平安发布了2019年的年报。基本内容如下：</p>
-<table>
-<thead>
-<tr class="header">
-<th>营收</th>
-<th>营运利润</th>
-<th>净利润</th>
-<th>内含价值</th>
-<th>新业务价值</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1.17w亿(+19.7%)</td>
-<td>1329亿(+18.1%)</td>
-<td>1494亿(38.1%)</td>
-<td>1.2w亿(+19.8%)</td>
-<td>759亿(+5.1%)</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th>个人客户数</th>
-<th>个人业务营运利润</th>
-<th>占比</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2亿(+11.2%)</td>
-<td>1228亿(+25.7%)</td>
-<td>92.4%</td>
-</tr>
-</tbody>
-</table>
+        <p>微服务有了Docker的加持快速的流行了起来，但是如何管理这些Docker容器呢？Kubernetes是Google开发的，一种适用于生产环境大规模编排容器的管理平台。本文将在单机上以一个简单的例子来介绍Kubernetes的使用。</p>
+<h5 id="安装kubernetes">安装Kubernetes</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y etcd kubernetes</span><br></pre></td></tr></table></figure>
+<p>修改apiserver配置文件，将--admission-control参数中的ServiceAccount删除。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;kubernetes&#x2F;apiserver</span><br><span class="line">KUBE_ADMISSION_CONTROL&#x3D;&quot;--admission-control&#x3D;NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota&quot;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>营运利润是从净利润中剔除短期波动性较大的损益项目和非日常性的一次性的营收收支。因为平安有很多投资的收益，收益不稳定，所以使用营运利润更准确。还有一种说法是营运利润限制投资收益率固定在5%，剩下的收益都是非营运利润。</p>
-<p>营运利润方面没有什么问题，保险公司的利润增速主要和前几年新业务价值的增速相关（类似于房地产的预售），大概延迟1-2年。</p>
-<p>净利润方面，因为投资收益、折现率变动、一次性所得税减少等因素使得净利润增速要高于营运利润增速。另外因为多计提了207亿元的责任准备金，所以实际净利润增速大概在50%左右。</p>
-<p>中国平安的收入主要来源于四部分：寿险及健康险，财产保险业务，平安银行，其他收入。下面依次介绍：</p>
-<h4 id="寿险及健康险">寿险及健康险</h4>
-<p>该业务主要针对寿险、重疾险、分红险、意外险、等涉及到人身健康的保险业务。保费收上来之后可以用来投资，投资收益也是算到利润里面的，一般是低风险收益，收益率大概在5%左右。</p>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>收入</th>
-<th>占比</th>
-<th>营运利润</th>
-<th>净资产投资收益</th>
-<th>内含价值</th>
-<th>新业务价值</th>
-<th>新业务价值率</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>7170亿(+25.7%)</td>
-<td>61%</td>
-<td>880亿(+24.7%)</td>
-<td>117亿(+31%)</td>
-<td>7575亿(+23.5%)</td>
-<td>759亿(+5.1%)</td>
-<td>47.3(+3.6%)</td>
-</tr>
-</tbody>
-</table>
-<p>营运利润主要来自于四个方面：</p>
-<ul>
-<li>剩余边际摊销：保单未来现金流的在当前的贴现值，类似于内含价值的计算方式。各期剩余边际摊销的增长主要来自于当期新业务的增长。</li>
-<li>净资产投资收益：公司净资产（总资产-负债）的投资收益</li>
-<li>息差收入：长期投资收益率假设与准备金折现率的差异导致。长期投资收益率以5%为准，准备金是国家规定的为了防止金融风险的现金储备，默认按照750天国债的平均收益率。这两个收益率的差值就是利润差值，但是跟国家政策密切相关。</li>
-<li>营运偏差及其他。主要是指公司正常营运和之前模型假设的比较，如果公司实际运营好于模型预测（保单继续率、退保率、赔付率）则该值为正。如果坏于预测值则该值为负。</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th>剩余边际摊销</th>
-<th>净资产投资收益</th>
-<th>息差收入</th>
-<th>营运偏差及其他</th>
-<th>税前营运总利润</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>744亿(+19.5%)</td>
-<td>117亿(+31%)</td>
-<td>39亿(-21.8%)</td>
-<td>104亿(-52.2%)</td>
-<td>1005亿(+2.6%)</td>
-</tr>
-</tbody>
-</table>
-<p>可以看到税前营运利润只增加了2.6%，根本原因是营运偏差及其他利润下降了52%，主要受保单继续率和费用增加超过预期。</p>
-<p>新业务价值彰显一家保险公司的成长能力，和未来利润增长成正比，可以算是看一家寿险公司最重要的数据了，影响因素包含：新客户数量、新客户质量、保单质量等。由于前几年的野蛮增长，使得这两年新业务价值增速变慢，目前平安也做做改革，包括科技助力（使用互联网科技手段拉来更多的客户）、代理人优化（提升代理人素质，拉拢更多的高客户质量）、保单结构优化（争取更多的长期保障合同）等。可以看到目前中国平安的新业务价值率为47.3%，逐步提升而且有提升空间（友邦的新业务价值率为60%左右）。代理人渠道新业务价值为682亿元（+5.9%），代理人新业务价值率为64%（+7.8%）。国内保险行业仍然有较大的发展空间，平安作为其中的龙头，我觉的又能力做好改革，走出困境。</p>
-<h4 id="财产保险业务">财产保险业务</h4>
-<p>主要针对车险、企财险、工程险、货运险、责任险、保证险、信用险、家财险等的保险业务。产险大多为短期业务，当期就可以看到经营情况，所以不像寿险那样比较麻烦。</p>
-<table>
-<thead>
-<tr class="header">
-<th>收入</th>
-<th>占比</th>
-<th>营运利润</th>
-<th>投资收益</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2505亿(+11%)</td>
-<td>21%</td>
-<td>208亿(+70%)</td>
-<td>179亿(+63%)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="平安银行">平安银行</h4>
-<table>
-<thead>
-<tr class="header">
-<th>收入</th>
-<th>占比</th>
-<th>净利润</th>
-<th>营运利润</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1379亿(+18%)</td>
-<td>12%</td>
-<td>281亿(13.6%)</td>
-<td>163亿(13.5%)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="其他收入">其他收入</h4>
-<p>这里面主要包含信托业务、证券业务、其他资产管理业务、科技业务（陆金所控股、金融壹账通、平安好医生、平安医保科技、汽车之家）、其他业务及合并抵消等。</p>
-<table>
-<thead>
-<tr class="header">
-<th>收入</th>
-<th>占比</th>
-<th>营运利润</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>632亿(-2%)</td>
-<td>6%</td>
-<td>78亿(-50%)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="风险">风险</h4>
-<ul>
-<li>新业务增长不及预期</li>
-</ul>
+<p>启动所有的Kubernetes服务： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl start etcd</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl start kube-apiserver</span><br><span class="line">systemctl start kube-controller-manager</span><br><span class="line">systemctl start kube-scheduler</span><br><span class="line">systemctl start kubelet #集群环境下运行在slave机器上</span><br><span class="line">systemctl start kube-proxy #集群环境下运行在slave机器上</span><br></pre></td></tr></table></figure></p>
+<h5 id="启动pod">启动Pod</h5>
+<p>Pod是Kubernetes管理的最小资源单位，可以看做是逻辑上的一台机器。Node节点上可运行多个Pod，一个Pod内部可有多个Docker Container，同一个Pod内部的Container共享网络和磁盘。以下展示如何创建Pod，以nginx应用为例，首先创建Pod的yaml文件： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: ReplicationController #该类型可以一次性创建多个Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx #rc的名字，生成的Pod以此为前缀</span><br><span class="line">spec:</span><br><span class="line">  replicas: 3 #创建的pod数目，pod是逻辑上的一台机器</span><br><span class="line">  selector: #指定该RC管理哪些pod，通过Label识别</span><br><span class="line">    app: nginx #管理Label为app:nginx的pod</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      name: nginx</span><br><span class="line">      labels:</span><br><span class="line">        app: nginx #设置pod的Label，在selector中可以进行选择管理。通常的做法可以配置不同环境（测试、灰度、正式）的Label，用户管理不同环境的Pod。</span><br><span class="line">    spec:</span><br><span class="line">      containers: # 一个pod中可有多个container，同一个pod内的container共享IP地址和端口</span><br><span class="line">      - name: nginx #横杠代表数组元素，通过数组可以设置多个container</span><br><span class="line">        image: nginx #docker的image名字，默认从gcr.io的库中拉取</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 80 #docker中的端口，同一个pod中的container端口不能相同</span><br></pre></td></tr></table></figure></p>
+<p>启动Pod <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl create -f ningx.yaml #启动Pod</span><br><span class="line">sudo kubectl get pods #查看Pod运行情况</span><br></pre></td></tr></table></figure></p>
+<p>启动时候有可能会出现错误导致Pod一直处在ContainerCreating状态，使用命令：sudo kubectl describe pods进行查看，如果出现如下错误： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error syncing pod, skipping: failed to &quot;StartContainer&quot; for &quot;POD&quot; with ErrImagePull: &quot;image pull failed for registry.access.redhat.com&#x2F;rhel7&#x2F;pod-infrastructure:latest, this may be because there are no credentials on this request.  details: (open &#x2F;etc&#x2F;docker&#x2F;certs.d&#x2F;registry.access.redhat.com&#x2F;redhat-ca.crt: no such file or directory)&quot;</span><br></pre></td></tr></table></figure> 使用以下办法解决： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y *rhsm*</span><br><span class="line">wget http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;7&#x2F;os&#x2F;x86_64&#x2F;Packages&#x2F;python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm</span><br><span class="line">rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout .&#x2F;etc&#x2F;rhsm&#x2F;ca&#x2F;redhat-uep.pem | tee &#x2F;etc&#x2F;rhsm&#x2F;ca&#x2F;redhat-uep.pem</span><br></pre></td></tr></table></figure></p>
+<h5 id="启动service">启动Service</h5>
+<p>上面已经启动了3个Pod，但是Pod部署时候并不确定会部署在哪台机器上，所以需要一种类似名字服务的机制，来保证能找到对应的Pod服务。Kubenetes Service就是这样的用处，首先定义yaml文件： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Service #类似于</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx #service名字</span><br><span class="line">spec:</span><br><span class="line">  type: NodePort #该类型可以使得外部服务通过node:nodePort的方式访问service，另外还有LoadBlance的类型也支持外部访问</span><br><span class="line">  ports:</span><br><span class="line">    - port: 80 #kubernetes内部服务可通过VIP:80访问service</span><br><span class="line">      nodePort: 30001 #设定nodePort，外部服务可使用node:nodePort访问service</span><br><span class="line">  selector:</span><br><span class="line">    app: nginx #该service管理Label为app:nginx的所有Pod</span><br></pre></td></tr></table></figure></p>
+<p>使用命令：sudo kubectl create -f nginx-sv.yaml 启动Service，并使用 sudo kubectl get service 查看Service状态： <img src="https://note.youdao.com/yws/public/resource/66136745e0f2e612cd36797e68a63a32/xmlnote/25351B714E18456B891162172C4E983F/61138" /></p>
+<h5 id="访问服务">访问服务</h5>
+<p>内部服务访问nginx：curl 'http://10.254.149.154:80/'<br />
+外部服务访问nginx：curl 'http://ip:30001'，其中ip为启动Kubenetes service的物理机器IP地址</p>
 
     </div>
 
@@ -441,9 +286,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%B8%AD%E5%9B%BD%E5%B9%B3%E5%AE%89/" rel="tag"># 中国平安</a>
-              <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%AD%A3%E5%BA%A6/" rel="tag"># 第四季度</a>
-              <a href="/tags/%E5%B9%B4%E6%8A%A5/" rel="tag"># 年报</a>
+              <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
+              <a href="/tags/service/" rel="tag"># service</a>
+              <a href="/tags/replicationController/" rel="tag"># replicationController</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
           </div>
 
         
@@ -452,13 +298,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/18/%E8%A7%A3%E5%86%B3Bug%E7%9A%84%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F/" rel="prev" title="解决Bug的思维方式">
-      <i class="fa fa-chevron-left"></i> 解决Bug的思维方式
+    <a href="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/" rel="prev" title="《学会提问》读书笔记">
+      <i class="fa fa-chevron-left"></i> 《学会提问》读书笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/22/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200222/" rel="next" title="阿里巴巴2020财年第三季度财报分析">
-      阿里巴巴2020财年第三季度财报分析 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -519,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体"><span class="nav-number">2.</span> <span class="nav-text">整体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寿险及健康险"><span class="nav-number">3.</span> <span class="nav-text">寿险及健康险</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#财产保险业务"><span class="nav-number">4.</span> <span class="nav-text">财产保险业务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平安银行"><span class="nav-number">5.</span> <span class="nav-text">平安银行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他收入"><span class="nav-number">6.</span> <span class="nav-text">其他收入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#风险"><span class="nav-number">7.</span> <span class="nav-text">风险</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装kubernetes"><span class="nav-number">1.</span> <span class="nav-text">安装Kubernetes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动pod"><span class="nav-number">2.</span> <span class="nav-text">启动Pod</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动service"><span class="nav-number">3.</span> <span class="nav-text">启动Service</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#访问服务"><span class="nav-number">4.</span> <span class="nav-text">访问服务</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

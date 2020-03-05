@@ -46,22 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="本文中我们在Mac机器上使用Docker配置TensorFlow-Serving环境，并提供Http预测接口。 安装Docker 1brew cask install docker 下载TensorFlow-Serving镜像 1docker pull tensorflow&#x2F;serving">
+  <meta name="description" content="独立思考也被称作批判性思维，在现实生活中我们不能轻易的被所谓的专家或者权威忽悠，需要有自己独特的判断能力，这是个人的基本素养。批判性思维首先需要分辨出来作者的论题、结论、理由、价值观。它的基本流程如下：  论点：找到作者的论题和结论。 论据：找到作者支撑结论的理由。 歧义：确保理解作者的观点，并且不存在歧义。 假设：找到作者没有说出来但确实论证基础的价值观和认知 推理：谨慎分析推论过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TensorFlow-Serving入门">
-<meta property="og:url" content="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="《学会提问》读书笔记">
+<meta property="og:url" content="https://springzzj.github.io/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/index.html">
 <meta property="og:site_name" content="SpringZZJ&#39;s Blog">
-<meta property="og:description" content="本文中我们在Mac机器上使用Docker配置TensorFlow-Serving环境，并提供Http预测接口。 安装Docker 1brew cask install docker 下载TensorFlow-Serving镜像 1docker pull tensorflow&#x2F;serving">
+<meta property="og:description" content="独立思考也被称作批判性思维，在现实生活中我们不能轻易的被所谓的专家或者权威忽悠，需要有自己独特的判断能力，这是个人的基本素养。批判性思维首先需要分辨出来作者的论题、结论、理由、价值观。它的基本流程如下：  论点：找到作者的论题和结论。 论据：找到作者支撑结论的理由。 歧义：确保理解作者的观点，并且不存在歧义。 假设：找到作者没有说出来但确实论证基础的价值观和认知 推理：谨慎分析推论过程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-16T18:17:52.000Z">
-<meta property="article:modified_time" content="2020-01-17T02:56:17.029Z">
+<meta property="article:published_time" content="2020-03-05T08:32:15.000Z">
+<meta property="article:modified_time" content="2020-03-05T00:36:00.658Z">
 <meta property="article:author" content="SpringZZJ">
-<meta property="article:tag" content="机器学习">
-<meta property="article:tag" content="TensorFlow">
-<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="独立思考">
+<meta property="article:tag" content="学会提问">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+<link rel="canonical" href="https://springzzj.github.io/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/">
 
 
 <script id="page-configurations">
@@ -73,7 +72,7 @@
   };
 </script>
 
-  <title>TensorFlow-Serving入门 | SpringZZJ's Blog</title>
+  <title>《学会提问》读书笔记 | SpringZZJ's Blog</title>
   
 
 
@@ -188,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          TensorFlow-Serving入门
+          《学会提问》读书笔记
         </h1>
 
         <div class="post-meta">
@@ -210,24 +209,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-01-16 18:17:52" itemprop="dateCreated datePublished" datetime="2020-01-16T18:17:52Z">2020-01-16</time>
+              <time title="创建时间：2020-03-05 08:32:15 / 修改时间：00:36:00" itemprop="dateCreated datePublished" datetime="2020-03-05T08:32:15Z">2020-03-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-17 02:56:17" itemprop="dateModified" datetime="2020-01-17T02:56:17Z">2020-01-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
                   </a>
                 </span>
             </span>
@@ -248,8 +241,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -264,31 +257,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文中我们在Mac机器上使用Docker配置TensorFlow-Serving环境，并提供Http预测接口。</p>
-<h5 id="安装docker">安装Docker</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
-<h5 id="下载tensorflow-serving镜像">下载TensorFlow-Serving镜像</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull tensorflow&#x2F;serving</span><br></pre></td></tr></table></figure>
+        <p>独立思考也被称作批判性思维，在现实生活中我们不能轻易的被所谓的专家或者权威忽悠，需要有自己独特的判断能力，这是个人的基本素养。批判性思维首先需要分辨出来作者的论题、结论、理由、价值观。它的基本流程如下：</p>
+<ul>
+<li>论点：找到作者的论题和结论。</li>
+<li>论据：找到作者支撑结论的理由。</li>
+<li>歧义：确保理解作者的观点，并且不存在歧义。</li>
+<li>假设：找到作者没有说出来但确实论证基础的价值观和认知</li>
+<li>推理：谨慎分析推论过程</li>
+</ul>
 <a id="more"></a>
-<h5 id="生成savedmodel模型">生成SavedModel模型</h5>
-<p>TensorFlow主要有三种模型格式：CheckPoint(.ckpt)，SavedModel，GraphDef(*.pb)。这三种格式之间可以互相转换，CheckPoint格式在训练模型时候每隔几轮保存一次，以方便增量训练。GraphDef格式适用于python、java的tensorflow库进行加载，SavedModel是TensorFlow-Serving要求的格式。我们最开始的是一个xception.pb模型（GraphDef格式），这里需要将其转换为SavedModel格式，代码如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow.compat.v1 as tf</span><br><span class="line">import time</span><br><span class="line">tf.disable_v2_behavior()</span><br><span class="line">from tensorflow.python.saved_model import signature_constants</span><br><span class="line">from tensorflow.python.saved_model import tag_constants</span><br><span class="line"></span><br><span class="line">export_dir &#x3D; &#39;&#x2F;Work&#x2F;infra&#x2F;tensorflow&#x2F;saved_model&#39;</span><br><span class="line">graph_pb &#x3D; &#39;&#x2F;Work&#x2F;infra&#x2F;tensorflow&#x2F;xception.pb&#39;</span><br><span class="line"></span><br><span class="line">builder &#x3D; tf.saved_model.builder.SavedModelBuilder(export_dir)</span><br><span class="line"></span><br><span class="line">with tf.gfile.GFile(graph_pb, &quot;rb&quot;) as f:</span><br><span class="line">    graph_def &#x3D; tf.GraphDef()</span><br><span class="line">    graph_def.ParseFromString(f.read())</span><br><span class="line"></span><br><span class="line">sigs &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">with tf.Session(graph&#x3D;tf.Graph()) as sess:</span><br><span class="line">    # name&#x3D;&quot;&quot; is important to ensure we don&#39;t get spurious prefixing</span><br><span class="line">    tf.import_graph_def(graph_def, name&#x3D;&quot;&quot;)</span><br><span class="line">    g &#x3D; tf.get_default_graph()</span><br><span class="line">    inp &#x3D; g.get_tensor_by_name(&quot;input_1:0&quot;) &#x2F;&#x2F;输入节点名字</span><br><span class="line">    out &#x3D; g.get_tensor_by_name(&quot;output:0&quot;) &#x2F;&#x2F; 输出节点名字</span><br><span class="line"></span><br><span class="line">    sigs[signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY] &#x3D; \ </span><br><span class="line">        tf.saved_model.signature_def_utils.predict_signature_def(</span><br><span class="line">            &#123;&quot;in&quot;: inp&#125;, &#123;&quot;out&quot;: out&#125;)</span><br><span class="line"></span><br><span class="line">    builder.add_meta_graph_and_variables(sess,</span><br><span class="line">                                         [tag_constants.SERVING],</span><br><span class="line">                                         signature_def_map&#x3D;sigs)</span><br><span class="line"></span><br><span class="line">builder.save()</span><br></pre></td></tr></table></figure> 转换完成后，目录下除了saved_model.pb文件，还多了一个variables文件夹，该文件夹为空，因为从pb文件转换过来的时候全是常量没有变量。</p>
-<h5 id="启动tensorflow-serving">启动TensorFlow-Serving</h5>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8501:8501 --name tfserving_testnet  --mount type&#x3D;bind,source&#x3D;&#x2F;Wor</span><br><span class="line">k&#x2F;infra&#x2F;tensorflow&#x2F;xception,target&#x3D;&#x2F;models&#x2F;xception  -e MODEL_NAME&#x3D;xception -t tensorflow&#x2F;serving</span><br></pre></td></tr></table></figure>
+<h5 id="消除歧义">消除歧义</h5>
+<p>确保对作者的理解没有歧义，确认对于结论和理由的准确性描述。一个词或短语越是抽象，人们就越可能做出多种解读。比如高收入、超强、见效、严重后果等。一般来说描述性词汇都是带有主观色彩的，要尽量使用具体的词汇。</p>
+<h5 id="寻找价值观和认知">寻找价值观和认知</h5>
+<p>所有的理由底层都有作者自己的假设，这个假设并没有明说出来，作者认为是理所当然的，或者说其实是每个人内心深处的价值观和认知。我们需要挖掘出来作者真正的价值观和认知，才能更好的理解整个论证。比如钢铁厂污染环境，所以需要关掉钢铁厂。这里面隐含的价值观是环境比GDP更重要。那么如何寻找作者的价值观和认知呢？</p>
 <ul>
-<li>8051：http端口，前面的为本机的端口，后面的为docker中的端口。</li>
-<li>name：名字随便起，为了识别docker的container</li>
-<li>source：模型在本机上的位置目录</li>
-<li>target：/models/固定，后面的名字随便起，最好和模型名字一致</li>
-<li>MODEL_NAME：设置Docker中的环境变量，和上面的target名字一致</li>
+<li>检查作者的背景，屁股决定脑袋，自然就可以找出作者这样的人的通常持有的价值取向。</li>
+<li>将结论可能发生的后果作为发现价值观的重要线索。看结论使他损失了什么或者受益了什么，就知道他更注重什么。</li>
+<li>尝试为反方做辩护，想想我更关心什么、我的出发点是什么？</li>
+<li>不断思考理由和结论之间的鸿沟，填补这个鸿沟就是背后的作者认知假设。</li>
 </ul>
-<h5 id="http接口">Http接口</h5>
+<h5 id="推论分析">推论分析</h5>
+<p>有了上面调研的基础后，需要再重新审视整个推论流程是否合理，首先需要看作者提出的理由是否站得住脚，一般来说会有如下的不合理理由类型：</p>
 <ul>
-<li>查看TensorFlow-Serving状态：curl http://localhost:8501/v1/models/xception</li>
-<li>查看TensorFlow-Serviing模型：curl http://localhost:8501/v1/models/xception/metadata</li>
-<li>使用Http请求进行模型预测：curl -d '{"instances": [1,2,3,4,5]}' -X POST http://localhost:8501/v1/models/xception:predict，其中instances的value为模型输入Tensor的字符串形式，矩阵维度需要和Tensor对应。</li>
+<li>直觉：第六感是盲目的，但是对于经验丰富的人我们应该相信。</li>
+<li>个人经历：以偏概全谬误，不能以一个人的来代表全部的人。</li>
+<li>典型案例：以偏概全，利用情感说服人们。</li>
+<li>当事人证言：选择性展示、个人利益等因素会导致当事人证言并不总是可信。需要去挖掘当事人背后的专门知识、背景、价值观认知等。参考多个当事人的说辞</li>
+<li>权威或专家意见：需要检验权威的专业性</li>
+<li>个人观察：个人观察并不一定是纯粹的观察，它一定是融合了自己的价值观、偏见、态度后留下的东西，</li>
+<li>研究结果：研究报告的质量如何？有没有其他相互矛盾的研究？距离现在的时间？实验做的是否科学？片面的调查和问卷（幸存者偏差）？</li>
+<li>类比：往往两个东西之间有点相似，但是也会有很大其他的不同。往往也能找到不符合论点的类比例子。</li>
 </ul>
-<h5 id="python客户端">Python客户端</h5>
-<p>这里我们使用Python加载图片数据，并发向TensorFlow Http接口进行预测图片质量。Http接口的数据需要是Json格式，代码如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SERVER_URL &#x3D; &#39;http:&#x2F;&#x2F;localhost:8501&#x2F;v1&#x2F;models&#x2F;xception:predict&#39;</span><br><span class="line">def prediction():</span><br><span class="line">    images &#x3D; image.load_img(&quot;test.jpg&quot;, target_size&#x3D;(480, 480))</span><br><span class="line">    x &#x3D; image.img_to_array(images)</span><br><span class="line">    x &#x3D; np.expand_dims(x, axis&#x3D;0)</span><br><span class="line">    image_np &#x3D; xception.preprocess_input(x)</span><br><span class="line">    #print str(image_np.tolist())</span><br><span class="line">    predict_request&#x3D;&#39;&#123;&quot;instances&quot;:%s&#125;&#39; % str(image_np.tolist())</span><br><span class="line">    #predict_request&#x3D;&#39;&#123;&quot;instances&quot;:%s&#125;&#39; % str([[[[1]*3]*480]*480])</span><br><span class="line">    response &#x3D; requests.post(SERVER_URL, data&#x3D;predict_request)</span><br><span class="line">    prediction &#x3D; response.json()</span><br><span class="line">    print(prediction)</span><br><span class="line">        </span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">    prediction()</span><br></pre></td></tr></table></figure></p>
+<p>作者在论证的过程中也会耍一些小手段欺骗你来相信它的推论是正确的，这里面涉及的手段有：</p>
+<ul>
+<li>人身攻击型谬误：不对具体的问题展开讨论，攻击人身问题。</li>
+<li>滑坡谬误：将在某件事情上的做法粗暴的引申到其他所有方面。</li>
+<li>追求完美解决方案谬误：我们不总是必须要追求完美的解决方案，如果这个方案解决了一部分问题，那么就是一个值得考虑的问题。总比束手无策好得多。</li>
+<li>诉诸公众谬误：公众往往没有深入研究过一个问题，所以即使公众认为的也不是一个合理的判断。</li>
+<li>诉诸可疑权威谬误：和诉诸公众一样，权威不代表一定是正确的。需要谨慎审视权威的专业性。</li>
+<li>诉诸感情谬误：利用人们的情感来做论证，而不拿出实际的证据。</li>
+<li>稻草人谬误：构造一个虚假的立场进行攻击，反过来证明自己立场的正确。</li>
+<li>虚假的两难选择谬误：作者创造一种虚假的两难选择，将解决方法限定在only这两种选择时候，就有可能是不可靠的。往往我们有第三条路达到两全其美的结果。</li>
+<li>乱扣帽子谬误：避开本身的问题，而攻击其他的方面</li>
+<li>转移注意力谬误：避开问题，去聊其他的话题，尝试带过去。</li>
+<li>循环论证：论点的正确性由论点本身来支持。比如如果心诚则能达到愿望，怎么达到心诚？愿望实现了就是心诚。</li>
+</ul>
+<p>总之我们在分析推论的过程中要严格检验其推论的逻辑正确性，同时要确保我们对整体问题的理解更全面，在分析的过程中可以考虑如下手段：</p>
+<ul>
+<li>查阅各种资料，学习其他人对该论题的态度和推论过程。</li>
+<li>结论使得作者损失了什么，受益了什么。找到论题双面的优缺点。</li>
+<li>站在正方立场，自己寻找可能支撑结论的理由。站在反方立场，寻找支撑结论的理由</li>
+<li>尝试验证逆否命题和否命题，防止一些思维误区，寻找到更多的理由来验证推论是否正确，或者寻找到提出结论的价值观</li>
+</ul>
 
     </div>
 
@@ -298,9 +318,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
-              <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/%E7%8B%AC%E7%AB%8B%E6%80%9D%E8%80%83/" rel="tag"># 独立思考</a>
+              <a href="/tags/%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/" rel="tag"># 学会提问</a>
           </div>
 
         
@@ -309,13 +328,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/16/%E8%85%BE%E8%AE%AF%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90-20200108/" rel="prev" title="腾讯股票分析-20200108">
-      <i class="fa fa-chevron-left"></i> 腾讯股票分析-20200108
+    <a href="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/" rel="prev" title="Java调用TensorFlow-Serving">
+      <i class="fa fa-chevron-left"></i> Java调用TensorFlow-Serving
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/17/Libco%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" rel="next" title="Libco源码学习">
-      Libco源码学习 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -376,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装docker"><span class="nav-number">1.</span> <span class="nav-text">安装Docker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下载tensorflow-serving镜像"><span class="nav-number">2.</span> <span class="nav-text">下载TensorFlow-Serving镜像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成savedmodel模型"><span class="nav-number">3.</span> <span class="nav-text">生成SavedModel模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动tensorflow-serving"><span class="nav-number">4.</span> <span class="nav-text">启动TensorFlow-Serving</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#http接口"><span class="nav-number">5.</span> <span class="nav-text">Http接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python客户端"><span class="nav-number">6.</span> <span class="nav-text">Python客户端</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#消除歧义"><span class="nav-number">1.</span> <span class="nav-text">消除歧义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#寻找价值观和认知"><span class="nav-number">2.</span> <span class="nav-text">寻找价值观和认知</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#推论分析"><span class="nav-number">3.</span> <span class="nav-text">推论分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

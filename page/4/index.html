@@ -184,6 +184,287 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/" class="post-title-link" itemprop="url">秒杀系统设计</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-15 23:10:49 / 修改时间：15:21:30" itemprop="dateCreated datePublished" datetime="2020-01-15T23:10:49Z">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="概述">概述</h3>
+<p>秒杀系统是指大量用户同时抢购数量有限的商品，瞬时造成服务端的尖峰压力， 服务端需要保证高并发处理，同时又要保证高可用性、商品不会超发、快速扩容缩容、系统容错、降级熔断等，融合了各种服务端技术。</p>
+<p>我们以电商的购买流程举例，电商购买分为放入购物车、下单、支付三个步骤。<strong>购物车</strong>服务是用来管理用户将要购买的商品，单独一个服务。<strong>下单服务</strong>是服务端创建订单并减库存的服务，如果库存减为0，则不能再卖出商品，减库存需要做到幂等和防超发。<strong>支付系统</strong>是对订单进行最终的支付， 如果过期没有支付需要再返回库存。总体上来说订单ID在整个流程中是唯一的，试用订单ID来保证幂等性。如果以微信红包系统来举例的话，经历微信包红包、发红包、抢红包、拆红包的过程。抢红包类似电商的减库存，用户抢到红包但是不知道多少钱，抢到红包的人是说有资格拿到钱（拆红包时有可能失败）。拆红包类似最终支付到账的流程，后台随机给用户分配抢到的金额并写入到数据库中</p>
+<p>秒杀系统中，一个重要的概念的幂等性，因为分布式系统中存在各种重试（事务补偿），在各个层面都要做的幂等性，才能有效的防止重复购买和数据一致性。</p>
+<p>下面我们按照客户端、服务端、缓存、数据库来说明下各个阶段需要做的事情。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-md/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/" class="post-title-link" itemprop="url">JVM长时间Stop The World问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-15 23:04:09 / 修改时间：15:08:53" itemprop="dateCreated datePublished" datetime="2020-01-15T23:04:09Z">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>近期，线上服务偶尔会出现超时情况。说一下背景，我们的开发语言是java，在单台物理机上部署了3个java模块，他们之间互相调用。服务p999耗时有时候会超过10s，按道理我们的业务不会停滞这么长时间，并且在长时间内只有一台机器多次出现了这个问题。下面是我们的分析流程：</p>
+<ol type="1">
+<li><p>登录机器查看WARN报警日志，事故发生时刻打印了大批WARN日志。进一步发现，在大批打印日志之前，有很长时间没有打印任何日志。怀疑可能是java模块GC导致的stop the world。</p></li>
+<li><p>JVM中增加了-XX:+PrintGC参数，会将gc日志输出到指定文件。查看gc日志，发现确实有长时间stop the world的情况，并和问题发生时间吻合。但是有时候出现在minor gc中，有时候出现在普通的safepoint安全点位置。说明并不单纯是gc导致的，但是问题发生原因肯定和stop the world有关。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/16/JVM%E9%95%BF%E6%97%B6%E9%97%B4Stop-The-World%E9%97%AE-md/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%8A%80%E6%9C%AF%E5%B0%8F%E7%BB%93-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%8A%80%E6%9C%AF%E5%B0%8F%E7%BB%93-md/" class="post-title-link" itemprop="url">自动驾驶技术小结.md</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-15 22:46:39 / 修改时间：15:28:47" itemprop="dateCreated datePublished" datetime="2020-01-15T22:46:39Z">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">自动驾驶</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/01/16/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%8A%80%E6%9C%AF%E5%B0%8F%E7%BB%93-md/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/16/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%8A%80%E6%9C%AF%E5%B0%8F%E7%BB%93-md/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="自动驾驶概述">自动驾驶概述</h2>
+<p>自动驾驶技术不需要人为操作，仅仅通过GPS、惯导、雷达等感知设备即可达到自动导航及行驶的目标。自动驾驶技术分为5个级别： - 等级0：即无自动。驾驶随时掌握著车辆的所有机械、物理功能，仅配备警报装置等无关主动驾驶的功能也算在内。 - 等级1：驾驶人操作车辆，但个别的装置有时能发挥作用，如电子稳定程式（ESP）或防锁死刹车系统（ABS）可以帮助行车安全。 - 等级2：驾驶人主要控制车辆，但系统阶调地自动化，使之明显减轻操作负担，例如主动式巡航定速（ACC）结合自动跟车和车道偏离警示，而自动紧急煞停系统（AEB）透过盲点侦测和汽车防撞系统的部分技术结合。 - 等级3：驾驶人需随时准备控制车辆，自动驾驶辅助控制期间，如在跟车时虽然可以暂时免于操作，但当汽车侦测到需要驾驶人的情形时，会立即回归让驾驶人接管其后续控制，驾驶必须接手因应系统无力处理的状况。 - 等级4：驾驶人可在条件允许下让车辆完整自驾，启动自动驾驶后，一般不必介入控制，此车可以按照设定之道路通则（如高速公路中，平顺的车流与标准化的路标、明显的提示线），自己执行包含转弯、换车道与加速等工作，除了严苛气候或道路模糊不清、意外，或是自动驾驶的路段已经结束等等，系统并提供驾驶人“足够宽裕之转换时间”，驾驶应监看车辆运作，但可包括有旁观下的无人停车功能。（有方向盘自动车） - 等级5：驾驶人不必在车内，任何时刻都不会控制到车辆。此类车辆能自行启动驾驶装置，全程也不须开在设计好的路况，就可以执行所有与安全有关之重要功能，包括没有人在车上时的情形，完全不需受驾驶意志所控，可以自行决策。（无需方向盘自动车）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/16/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%8A%80%E6%9C%AF%E5%B0%8F%E7%BB%93-md/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/16/java-tensorflow-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -353,20 +634,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">70</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -184,6 +184,198 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/" class="post-title-link" itemprop="url">TensorFlow-Serving源码编译</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-03 13:27:55 / 修改时间：06:07:58" itemprop="dateCreated datePublished" datetime="2020-03-03T13:27:55Z">2020-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在<a href="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">上一篇文章</a>中我们学习了如何来搭建TensorFlow-Serving的Docker环境，但是在启动TensorFlow-Serving服务的时候，会有一行日志： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I external&#x2F;org_tensorflow&#x2F;tensorflow&#x2F;core&#x2F;platform&#x2F;cpu_feature_guard.cc:141]</span><br><span class="line">Your CPU supports instructions that this TensorFlow binary was not compiled to</span><br><span class="line">use: AVX2 FMA</span><br></pre></td></tr></table></figure></p>
+<p>说明默认的TensorFlow-Serving的二进制版本不满足CPU优化的条件，这时候需要手动编译TensorFlow-Serving的源码。在<a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/g3doc/building_with_docker.md" target="_blank" rel="noopener">官方文档</a>提供了一种Docker的编译方法，但是在实际环境中执行的时候因为网速的原因一直没有成功，所以这里选择了另外自己编译的方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">使用Grpc调用TensorFlow-Serving服务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-02 23:07:30" itemprop="dateCreated datePublished" datetime="2020-03-02T23:07:30Z">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-03 13:31:17" itemprop="dateModified" datetime="2020-03-03T13:31:17Z">2020-03-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在<a href="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">上一篇文章</a>中，我们学习了在Mac机器上搭建TensorFlow-Serving的示例，并提供了使用Http接口访问的方法。本文中，我们将尝试使用Grpc接口访问TensorFlow-Serving服务。</p>
+<h5 id="启动服务">启动服务</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sudo docker run -p 8502:8500 -p 8501:8501 --name tfserving_testnet  --mount type&#x3D;bind,source&#x3D;&#x2F;home&#x2F;tensorflow&#x2F;xception,target&#x3D;&#x2F;models&#x2F;xception  -e MODEL_NAME&#x3D;xception -t tensorflow&#x2F;serving &amp;</span><br></pre></td></tr></table></figure>
+<p>其中，本机的8502端口对应Docker的8500端口（GRPC端口），本机8501端口对应Docker的8501端口（HTTP端口）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/03/TensorFlow-Serving-Grpc%E8%B0%83%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/02/25/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -990,190 +1182,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/" class="post-title-link" itemprop="url">Kaggle:预测自行车租赁数量(Bike Sharing Demand)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-28 15:28:46 / 修改时间：07:32:51" itemprop="dateCreated datePublished" datetime="2020-01-28T15:28:46Z">2020-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>该题目中主要的特征处理手段是将日期的字符串字段转换为相应的年份、月份、星期几、小时等字段，然后使用xgboost就可以进行预测，误差rmse为0.40左右。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E8%87%AA%E8%A1%8C%E8%BD%A6%E7%A7%9F%E8%B5%81%E6%95%B0%E9%87%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/" class="post-title-link" itemprop="url">Kaggle:预测未来销售(Predict Future Sales)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-27 23:18:56 / 修改时间：15:54:27" itemprop="dateCreated datePublished" datetime="2020-01-27T23:18:56Z">2020-01-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文记录了Kaggle上Predict Future Sales问题的探索过程。</p>
-<h5 id="基础特征">基础特征</h5>
-<p>数据主要有三个特征：shop_id, item_id, item_cnt_day。因为题目要求预测月份的销量情况，需要将训练数据中的按天销量改为按月销量，这里可以使用group_by或者pivot_table函数进行聚合。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">train_data &#x3D; pd.read_csv(&#39;.&#x2F;data&#x2F;sales_train.csv&#39;)</span><br><span class="line">#删除异常数据</span><br><span class="line">train_data &#x3D; train_data.drop(train_data[train_data.item_price &lt; 0].index | train_data[train_data.item_price &gt;&#x3D; 100000].index)</span><br><span class="line">train_data &#x3D; train_data.drop(train_data[train_data.item_cnt_day &lt; 0].index | train_data[train_data.item_cnt_day &gt;&#x3D; 1000].index)</span><br><span class="line"></span><br><span class="line">train_data1 &#x3D; pd.pivot_table(train_data, index&#x3D;[&#39;shop_id&#39;,&#39;item_id&#39;,&#39;date_block_num&#39;], values&#x3D;[&#39;item_cnt_day&#39;], aggfunc&#x3D;[np.sum],fill_value&#x3D;0).reset_index();</span><br><span class="line">train_data1.columns &#x3D; train_data1.columns.droplevel().map(str)</span><br><span class="line">train_data1 &#x3D; train_data1.reset_index(drop&#x3D;True).rename_axis(None, axis&#x3D;1)</span><br><span class="line">train_data1.columns.values[0]&#x3D;&quot;shop_id&quot;;</span><br><span class="line">train_data1.columns.values[1]&#x3D;&quot;item_id&quot;;</span><br><span class="line">train_data1.columns.values[2]&#x3D;&quot;month_id&quot;;</span><br><span class="line">train_data1.columns.values[3]&#x3D;&quot;item_cnt_month&quot;;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/28/Kaggle-%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E9%94%80%E5%94%AE-PredictFutureSales/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1244,7 +1252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1257,7 +1265,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

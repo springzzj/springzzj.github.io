@@ -184,6 +184,291 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">运行第一个kubernetes应用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-05 10:30:51 / 修改时间：03:15:26" itemprop="dateCreated datePublished" datetime="2020-03-05T10:30:51Z">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>微服务有了Docker的加持快速的流行了起来，但是如何管理这些Docker容器呢？Kubernetes是Google开发的，一种适用于生产环境大规模编排容器的管理平台。本文将在单机上以一个简单的例子来介绍Kubernetes的使用。</p>
+<h5 id="安装kubernetes">安装Kubernetes</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y etcd kubernetes</span><br></pre></td></tr></table></figure>
+<p>修改apiserver配置文件，将--admission-control参数中的ServiceAccount删除。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;kubernetes&#x2F;apiserver</span><br><span class="line">KUBE_ADMISSION_CONTROL&#x3D;&quot;--admission-control&#x3D;NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota&quot;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/%E8%BF%90%E8%A1%8C%E7%AC%AC%E4%B8%80%E4%B8%AAkubernets%E5%BA%94%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/" class="post-title-link" itemprop="url">《学会提问》读书笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-05 08:32:15 / 修改时间：00:36:00" itemprop="dateCreated datePublished" datetime="2020-03-05T08:32:15Z">2020-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>独立思考也被称作批判性思维，在现实生活中我们不能轻易的被所谓的专家或者权威忽悠，需要有自己独特的判断能力，这是个人的基本素养。批判性思维首先需要分辨出来作者的论题、结论、理由、价值观。它的基本流程如下：</p>
+<ul>
+<li>论点：找到作者的论题和结论。</li>
+<li>论据：找到作者支撑结论的理由。</li>
+<li>歧义：确保理解作者的观点，并且不存在歧义。</li>
+<li>假设：找到作者没有说出来但确实论证基础的价值观和认知</li>
+<li>推理：谨慎分析推论过程</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/05/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SpringZZJ">
+      <meta itemprop="description" content="在百度腾讯种地">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SpringZZJ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/" class="post-title-link" itemprop="url">Java调用TensorFlow-Serving</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-03 21:14:50 / 修改时间：14:12:21" itemprop="dateCreated datePublished" datetime="2020-03-03T21:14:50Z">2020-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在<a href="https://springzzj.github.io/2020/01/17/TensorFlow-Serving%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">TensorFlow-Serving入门</a>中，我们学习了如何搭建TensorFlow-Serving的Docker服务，并启动Docker。本文将尝试在Java中调用TensorFlow-Serving服务，支持两种方式：HTTP和GRPC。</p>
+<h5 id="启动tensorflow-serving服务">启动TensorFlow-Serving服务</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sudo docker run -p 8502:8500 -p 8501:8501 --name tfserving_testnet  --mount type&#x3D;bind,source&#x3D;&#x2F;home&#x2F;tensorflow&#x2F;xception,target&#x3D;&#x2F;models&#x2F;xception  -e MODEL_NAME&#x3D;xception -t tensorflow&#x2F;serving &amp;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/04/Java%E8%B0%83%E7%94%A8TensorFlow-Serving/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/03/03/TensorFlow-Serving%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -904,284 +1189,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/" class="post-title-link" itemprop="url">程序员未来最重要的技能是什么？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-05 20:26:44 / 修改时间：12:43:51" itemprop="dateCreated datePublished" datetime="2020-02-05T20:26:44Z">2020-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E6%83%B3/" itemprop="url" rel="index">
-                    <span itemprop="name">随想</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>从计算机的发展来看，程序员越来越不用关注底层硬件的知识，开发变的越来越简单。归根结底，是因为虚拟化做的越来越好。文件系统将硬盘虚拟化，我们通过访问文件系统就操作了磁盘。进程和线程将CPU虚拟化，任何计算任务被加载到进程中来使用计算资源。Socket将网络访问虚拟化，简单的socket命令就可以方便的操纵网络。整体上来看，操作系统将计算机虚拟化，我们通过访问操作系统就可以控制计算机。</p>
-<p>在分布式和云环境下，虚拟化也无处不在。Hadoop是对计算能力的虚拟化，通过提供map-reduce方式能方便的利用集群的CPU资源。云计算中IAAS、PAAS、SAAS也是将一些公共能力虚拟化，使得我们能够更方便、更灵活的使用云上的硬件资源。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AA%E6%9D%A5%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%8A%80%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/" class="post-title-link" itemprop="url">Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(2)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-28 23:28:41 / 修改时间：15:49:08" itemprop="dateCreated datePublished" datetime="2020-01-28T23:28:41Z">2020-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文继续根据Kaggle的Bag of Words Meets Bags of Popcorn问题探讨NLP的入门技术，<a href="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/">前一篇文章</a>介绍了使用CountVectorizer和TfidfVectorizer来对评论进行编码，本文将尝试使用Word2Vec的方法来对评论进行编码。</p>
-<h5 id="word2vec预处理">Word2Vec预处理</h5>
-<p>Word2Vec模型的训练语料需要是句子，所以我们首先需要将评论内容分离成一个个句子，这里使用nltk.tokenizer来分割句子。另外对句子仍然需要做去除HTML标签、去除特殊字符、去除停用词等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%902/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://springzzj.github.io/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SpringZZJ">
-      <meta itemprop="description" content="在百度腾讯种地">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SpringZZJ's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Kaggle:电影评论情感分析(Bag of Words Meets Bags of Popcorn)(1)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-28 23:05:45 / 修改时间：15:28:20" itemprop="dateCreated datePublished" datetime="2020-01-28T23:05:45Z">2020-01-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kaggle/" itemprop="url" rel="index">
-                    <span itemprop="name">Kaggle</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Kaggle的该题目是NLP入门的经典案列，本文也是出于这样的目的来学习NLP常用技术，主要参考<a href="https://www.kaggle.com/c/word2vec-nlp-tutorial/overview" target="_blank" rel="noopener">Overview</a>。</p>
-<h5 id="数据预处理">数据预处理</h5>
-<p>训练数据中包含了电影的评论内容和情感标签，评论内容是英文的，里面有可能包含各种特殊字符，也有可能是网页内容。测试数据只包含了评论内容，要求预测该评论对应的情感标签。评论内容是自然语言，需要先对评论做预处理，包括去除Html标签、去除特殊字符、分词、去除停用词等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/29/Kaggle-%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1252,20 +1259,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">82</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
